@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .custom-loader {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: conic-gradient(#0000 10%, #8b5cf6);
+            -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 6px),#000 0);
+            animation: s3 1s infinite linear;
+        }
+        @keyframes s3 {
+            to { transform: rotate(1turn) }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fact-content, .fact-translation {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .section-content {
+            min-height: 150px;
+        }
+        @media (min-width: 768px) {
+            .grid-layout {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-purple-900 text-gray-100 antialiased">
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex flex-wrap justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-purple-500 flex items-center">
+                    <i data-lucide="zap" class="w-8 h-8 mr-2"></i>
+                    FunFacts Hub
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-gray-100" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <div id="menu" class="hidden w-full lg:flex lg:w-auto lg:space-x-4 mt-4 lg:mt-0">
+                    <a href="#useless-fact" class="block py-2 px-4 text-sm lg:text-base lg:px-2 rounded-md hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="lightbulb" class="w-4 h-4 inline-block mr-1"></i>Useless Fact
+                    </a>
+                    <a href="#number-fact" class="block py-2 px-4 text-sm lg:text-base lg:px-2 rounded-md hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="hash" class="w-4 h-4 inline-block mr-1"></i>Number Fact
+                    </a>
+                    <a href="#cat-fact" class="block py-2 px-4 text-sm lg:text-base lg:px-2 rounded-md hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="cat" class="w-4 h-4 inline-block mr-1"></i>Cat Fact
+                    </a>
+                    <a href="#joke" class="block py-2 px-4 text-sm lg:text-base lg:px-2 rounded-md hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="smile" class="w-4 h-4 inline-block mr-1"></i>Joke
+                    </a>
+                    <a href="#dog-image" class="block py-2 px-4 text-sm lg:text-base lg:px-2 rounded-md hover:bg-purple-600 transition duration-300">
+                        <i data-lucide="image" class="w-4 h-4 inline-block mr-1"></i>Dog Image
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-purple-400">Khám phá điều thú vị mỗi ngày</h1>
+        
+        <div class="grid-layout">
+            <section id="useless-fact" class="bg-gray-800 rounded-lg shadow-lg p-4 md:p-6 transition duration-300 hover:shadow-purple-500/50">
+                <h2 class="text-xl md:text-2xl font-semibold mb-4 text-purple-400 flex items-center">
+                    <i data-lucide="lightbulb" class="w-6 h-6 mr-2"></i>Useless Fact
+                </h2>
+                <div class="section-content">
+                    <p id="useless-fact-content" class="fact-content text-gray-300 mb-4">Đang tải...</p>
+                    <div id="useless-fact-translation" class="fact-translation bg-gray-700 rounded-lg p-4 mb-4 hidden">
+                        <h3 class="text-lg font-semibold mb-2 text-purple-400">Bản dịch tiếng Việt:</h3>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div>
+                <button id="refresh-useless-fact" class="w-full md:w-auto bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
+                </button>
+            </section>
+
+            <section id="number-fact" class="bg-gray-800 rounded-lg shadow-lg p-4 md:p-6 transition duration-300 hover:shadow-purple-500/50">
+                <h2 class="text-xl md:text-2xl font-semibold mb-4 text-purple-400 flex items-center">
+                    <i data-lucide="hash" class="w-6 h-6 mr-2"></i>Number Fact
+                </h2>
+                <div class="flex flex-col mb-4">
+                    <div class="flex mb-2">
+                        <input type="number" id="number-input" class="flex-grow bg-gray-700 text-white px-4 py-2 rounded-l-full focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Nhập số">
+                        <button id="get-number-fact" class="bg-purple-600 text-white px-4 py-2 rounded-r-full hover:bg-purple-700 transition duration-300 flex items-center">
+                            <i data-lucide="search" class="w-4 h-4 mr-2"></i>Lấy fact
+                        </button>
+                    </div>
+                    <div class="flex space-x-2 flex-wrap">
+                        <button id="random-number" class="bg-gray-700 text-white px-3 py-1 rounded-full hover:bg-gray-600 transition duration-300 text-sm mb-2 flex items-center">
+                            <i data-lucide="shuffle" class="w-4 h-4 mr-1"></i>Số ngẫu nhiên
+                        </button>
+                        <button id="today-date" class="bg-gray-700 text-white px-3 py-1 rounded-full hover:bg-gray-600 transition duration-300 text-sm mb-2 flex items-center">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>Ngày hôm nay
+                        </button>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div id="number-fact-content" class="fact-content bg-gray-700 rounded-lg p-4 mb-4 transition-all duration-300 ease-in-out">
+                        <p class="text-gray-300">Nhập một số để xem fact thú vị!</p>
+                    </div>
+                    <div id="number-fact-translation" class="fact-translation bg-gray-700 rounded-lg p-4 transition-all duration-300 ease-in-out hidden">
+                        <h3 class="text-lg font-semibold mb-2 text-purple-400">Bản dịch tiếng Việt:</h3>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cat-fact" class="bg-gray-800 rounded-lg shadow-lg p-4 md:p-6 transition duration-300 hover:shadow-purple-500/50">
+                <h2 class="text-xl md:text-2xl font-semibold mb-4 text-purple-400 flex items-center">
+                    <i data-lucide="cat" class="w-6 h-6 mr-2"></i>Cat Fact
+                </h2>
+                <div class="section-content">
+                    <p id="cat-fact-content" class="fact-content text-gray-300 mb-4">Đang tải...</p>
+                    <div id="cat-fact-translation" class="fact-translation bg-gray-700 rounded-lg p-4 mb-4 hidden">
+                        <h3 class="text-lg font-semibold mb-2 text-purple-400">Bản dịch tiếng Việt:</h3>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div>
+                <button id="refresh-cat-fact" class="w-full md:w-auto bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
+                </button>
+            </section>
+
+            <section id="joke" class="bg-gray-800 rounded-lg shadow-lg p-4 md:p-6 transition duration-300 hover:shadow-purple-500/50">
+                <h2 class="text-xl md:text-2xl font-semibold mb-4 text-purple-400 flex items-center">
+                    <i data-lucide="smile" class="w-6 h-6 mr-2"></i>Joke of the Day
+                </h2>
+                <div class="section-content">
+                    <p id="joke-content" class="fact-content text-gray-300 mb-4">Đang tải...</p>
+                    <div id="joke-translation" class="fact-translation bg-gray-700 rounded-lg p-4 mb-4 hidden">
+                        <h3 class="text-lg font-semibold mb-2 text-purple-400">Bản dịch tiếng Việt:</h3>
+                        <p class="text-gray-300"></p>
+                    </div>
+                </div>
+                <button id="refresh-joke" class="w-full md:w-auto bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Joke mới
+                </button>
+            </section>
+        </div>
+
+        <section id="dog-image" class="bg-gray-800 rounded-lg shadow-lg p-4 md:p-6 transition duration-300 hover:shadow-purple-500/50 mt-6">
+            <h2 class="text-xl md:text-2xl font-semibold mb-4 text-purple-400 flex items-center">
+                <i data-lucide="image" class="w-6 h-6 mr-2"></i>Random Dog Image
+            </h2>
+            <div class="flex justify-center mb-4">
+                <img id="dog-image-content" src="" alt="Random dog" class="max-w-full h-auto rounded-lg shadow-md">
+            </div>
+            <button id="refresh-dog-image" class="w-full md:w-auto bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300 mx-auto block flex items-center justify-center">
+                <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Ảnh mới
+            </button>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-purple-400 flex items-center justify-center md:justify-start">
+                        <i data-lucide="zap" class="w-6 h-6 mr-2"></i>FunFacts Hub
+                    </h3>
+                    <p>Khám phá điều thú vị mỗi ngày</p>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-end space-x-4">
+                    <a href="#" class="hover:text-purple-400 transition duration-300 mb-2 md:mb-0 flex items-center">
+                        <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về chúng tôi
+                    </a>
+                    <a href="#" class="hover:text-purple-400 transition duration-300 mb-2 md:mb-0 flex items-center">
+                        <i data-lucide="shield" class="w-4 h-4 mr-1"></i>Chính sách bảo mật
+                    </a>
+                    <a href="#" class="hover:text-purple-400 transition duration-300 mb-2 md:mb-0 flex items-center">
+                        <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên hệ
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-purple-400 transition duration-300">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-purple-400 transition duration-300">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+            </div>
+            <div class="mt-4 text-center text-sm">
+                &copy; 2024 FunFacts Hub | Tanbaycu
+            </div>
+        </div>
+    </footer>
+
+    <div id="loading-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="custom-loader"></div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        const showLoading = () => {
+            loadingOverlay.classList.remove('hidden');
+            loadingOverlay.classList.add('flex');
+        };
+
+        const hideLoading = () => {
+            loadingOverlay.classList.add('hidden');
+            loadingOverlay.classList.remove('flex');
+        };
+
+        // Function to translate text
+        const translateToVietnamese = async (text, translationElement) => {
+            showLoading();
+            try {
+                const response = await fetch('https://api.mymemory.translated.net/get', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        q: text,
+                        langpair: 'en|vi'
+                    })
+                });
+                const data = await response.json();
+                const translation = data.responseData.translatedText;
+                translationElement.querySelector('p').textContent = translation;
+                translationElement.classList.remove('hidden');
+                translationElement.style.opacity = 0;
+                setTimeout(() => {
+                    translationElement.style.opacity = 1;
+                }, 50);
+            } catch (error) {
+                console.error('Error translating:', error);
+                translationElement.querySelector('p').textContent = 'Không thể dịch. Vui lòng thử  lại sau.';
+            }
+            hideLoading();
+        };
+
+        // Useless Fact
+        const uselessFactContent = document.getElementById('useless-fact-content');
+        const uselessFactTranslation = document.getElementById('useless-fact-translation');
+        const refreshUselessFact = document.getElementById('refresh-useless-fact');
+
+        const fetchUselessFact = async () => {
+            showLoading();
+            try {
+                const response = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+                const data = await response.json();
+                uselessFactContent.textContent = data.text;
+                translateToVietnamese(data.text, uselessFactTranslation);
+            } catch (error) {
+                console.error('Error fetching useless fact:', error);
+                uselessFactContent.textContent = 'Không thể tải fact. Vui lòng thử lại sau.';
+            }
+            hideLoading();
+        };
+
+        refreshUselessFact.addEventListener('click', fetchUselessFact);
+
+        // Number Fact
+        const numberInput = document.getElementById('number-input');
+        const getNumberFact = document.getElementById('get-number-fact');
+        const numberFactContent = document.getElementById('number-fact-content');
+        const numberFactTranslation = document.getElementById('number-fact-translation');
+        const randomNumberBtn = document.getElementById('random-number');
+        const todayDateBtn = document.getElementById('today-date');
+
+        const fetchNumberFact = async () => {
+            const number = numberInput.value || 'random';
+            showLoading();
+            try {
+                const response = await fetch(`http://numbersapi.com/${number}`);
+                const data = await response.text();
+                numberFactContent.innerHTML = `<p class="text-gray-300">${data}</p>`;
+                translateToVietnamese(data, numberFactTranslation);
+            } catch (error) {
+                console.error('Error fetching number fact:', error);
+                numberFactContent.innerHTML = '<p class="text-gray-300">Không thể tải fact. Vui lòng thử lại sau.</p>';
+            }
+            hideLoading();
+        };
+
+        getNumberFact.addEventListener('click', fetchNumberFact);
+
+        randomNumberBtn.addEventListener('click', () => {
+            numberInput.value = Math.floor(Math.random() * 1000) + 1;
+            fetchNumberFact();
+        });
+
+        todayDateBtn.addEventListener('click', () => {
+            const today = new Date();
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
+            numberInput.value = `${month}/${day}`;
+            fetchNumberFact();
+        });
+
+        numberInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                fetchNumberFact();
+            }
+        });
+
+        // Cat Fact
+        const catFactContent = document.getElementById('cat-fact-content');
+        const catFactTranslation = document.getElementById('cat-fact-translation');
+        const refreshCatFact = document.getElementById('refresh-cat-fact');
+
+        const fetchCatFact = async () => {
+            showLoading();
+            try {
+                const response = await fetch('https://catfact.ninja/fact');
+                const data = await response.json();
+                catFactContent.textContent = data.fact;
+                translateToVietnamese(data.fact, catFactTranslation);
+            } catch (error) {
+                console.error('Error fetching cat fact:', error);
+                catFactContent.textContent = 'Không thể tải fact. Vui lòng thử lại sau.';
+            }
+            hideLoading();
+        };
+
+        refreshCatFact.addEventListener('click', fetchCatFact);
+
+        // Joke
+        const jokeContent = document.getElementById('joke-content');
+        const jokeTranslation = document.getElementById('joke-translation');
+        const refreshJoke = document.getElementById('refresh-joke');
+
+        const fetchJoke = async () => {
+            showLoading();
+            try {
+                const response = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit');
+                const data = await response.json();
+                let joke;
+                if (data.type === 'single') {
+                    joke = data.joke;
+                } else {
+                    joke = `${data.setup} ${data.delivery}`;
+                }
+                jokeContent.textContent = joke;
+                translateToVietnamese(joke, jokeTranslation);
+            } catch (error) {
+                console.error('Error fetching joke:', error);
+                jokeContent.textContent = 'Không thể tải joke. Vui lòng thử lại sau.';
+            }
+            hideLoading();
+        };
+
+        refreshJoke.addEventListener('click', fetchJoke);
+
+        // Dog Image
+        const dogImageContent = document.getElementById('dog-image-content');
+        const refreshDogImage = document.getElementById('refresh-dog-image');
+
+        const fetchDogImage = async () => {
+            showLoading();
+            try {
+                const response = await fetch('https://dog.ceo/api/breeds/image/random');
+                const data = await response.json();
+                dogImageContent.src = data.message;
+                dogImageContent.alt = 'Random dog image';
+            } catch (error) {
+                console.error('Error fetching dog image:', error);
+                dogImageContent.alt = 'Không thể tải ảnh. Vui lòng thử lại sau.';
+            }
+            hideLoading();
+        };
+
+        refreshDogImage.addEventListener('click', fetchDogImage);
+
+        // Initial load
+        fetchUselessFact();
+        fetchNumberFact();
+        fetchCatFact();
+        fetchJoke();
+        fetchDogImage();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target) && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Intersection Observer for lazy loading
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    const sectionId = section.id;
+                    switch (sectionId) {
+                        case 'useless-fact':
+                            if (!uselessFactContent.textContent || uselessFactContent.textContent === 'Đang tải...') {
+                                fetchUselessFact();
+                            }
+                            break;
+                        case 'number-fact':
+                            if (!numberFactContent.textContent || numberFactContent.textContent === 'Đang tải...') {
+                                fetchNumberFact();
+                            }
+                            break;
+                        case 'cat-fact':
+                            if (!catFactContent.textContent || catFactContent.textContent === 'Đang tải...') {
+                                fetchCatFact();
+                            }
+                            break;
+                        case 'joke':
+                            if (!jokeContent.textContent || jokeContent.textContent === 'Đang tải...') {
+                                fetchJoke();
+                            }
+                            break;
+                        case 'dog-image':
+                            if (!dogImageContent.src) {
+                                fetchDogImage();
+                            }
+                            break;
+                    }
+                    observer.unobserve(section);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+
+
