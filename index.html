@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
     <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
-    <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia, quotes, history, science news">
+    <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia">
     <meta name="author" content="Tanbaycu">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
@@ -110,299 +110,233 @@
                 animation: slideUp 0.3s ease-out forwards;
             }
         }
-
-        .sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .main-content {
-            margin-left: 250px;
-            transition: margin-left .5s;
-        }
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 0;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-        }
     </style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar bg-white dark:bg-gray-800 shadow-lg">
-        <div class="px-4">
-            <h2 class="text-xl font-bold mb-5 text-primary">FunFacts Hub</h2>
-            <ul class="space-y-2">
-                <li><a href="#home" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Trang chủ</a></li>
-                <li><a href="#useless-fact" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Useless Fact</a></li>
-                <li><a href="#number-fact" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Number Fact</a></li>
-                <li><a href="#cat-fact" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Cat Fact</a></li>
-                <li><a href="#joke" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Joke</a></li>
-                <li><a href="#dog-image" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Dog Image</a></li>
-                <li><a href="#quote" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Quote</a></li>
-                <li><a href="#history" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Sự kiện lịch sử</a></li>
-                <li><a href="#science" class="block py-2 px-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700">Tin khoa học</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-between items-center py-4">
-                    <button id="sidebar-toggle" class="lg:hidden text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-2xl font-bold text-primary flex items-center">
+                    <i data-lucide="zap" class="w-8 h-8 mr-2"></i>
+                    FunFacts Hub
+                </a>
+                <div class="flex items-center space-x-4">
+                    <button id="dark-mode-toggle"
+                        class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
+                        <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
+                    </button>
+                    <button id="menu-toggle"
+                        class="lg:hidden text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300"
+                        aria-label="Toggle menu">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
-                    <a href="#" class="text-2xl font-bold text-primary flex items-center">
-                        <i data-lucide="zap" class="w-8 h-8 mr-2"></i>
-                        FunFacts Hub
-                    </a>
-                    <div class="flex items-center space-x-4">
-                        <button id="dark-mode-toggle"
-                            class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
-                            <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
-                            <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
-        </header>
+        </div>
+        <nav id="menu"
+            class="hidden lg:block bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-all duration-300 overflow-hidden max-h-0 lg:max-h-none">
+            <div class="container mx-auto px-4">
+                <ul
+                    class="flex flex-col lg:flex-row lg:items-center lg:justify-end space-y-2 lg:space-y-0 lg:space-x-8 py-4 lg:py-0">
+                    <li><a href="#useless-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Useless
+                            Fact</a></li>
+                    <li><a href="#number-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Number
+                            Fact</a></li>
+                    <li><a href="#cat-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Cat
+                            Fact</a></li>
+                    <li><a href="#joke"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Joke</a>
+                    </li>
+                    <li><a href="#dog-image"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Dog
+                            Image</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-        <main class="container mx-auto px-4 py-8">
-            <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám phá điều thú vị mỗi ngày</h1>
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám phá điều thú vị mỗi ngày
+        </h1>
 
-            <!-- Fact of the Day -->
-            <section id="fact-of-the-day" class="mb-12 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Fact of the Day</h2>
-                <p id="fact-of-the-day-content" class="text-lg text-gray-600 dark:text-gray-300">Đang tải...</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <section id="useless-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless Fact
+                    </h2>
+                    <div class="space-y-4">
+                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...
+                        </p>
+                        <div id="useless-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-useless-fact"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
+                    </button>
+                </div>
             </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <section id="useless-fact"
-                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless Fact
-                        </h2>
-                        <div class="space-y-4">
-                            <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...
-                            </p>
-                            <div id="useless-fact-translation"
-                                class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                                <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-400"></p>
-                            </div>
+            <section id="number-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number Fact
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex space-x-2">
+                            <input type="number" id="number-input"
+                                class="flex-grow bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Nhập số">
+                            <button id="get-number-fact"
+                                class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center">
+                                <i data-lucide="search" class="w-4 h-4 mr-2"></i>Lấy fact
+                            </button>
                         </div>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                        <button id="refresh-useless-fact"
-                            class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
-                        </button>
-                    </div>
-                </section>
-
-                <section id="number-fact"
-                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number Fact
-                        </h2>
-                        <div class="space-y-4">
-                            <div class="flex space-x-2">
-                                <input type="number" id="number-input"
-                                    class="flex-grow bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                                    placeholder="Nhập số">
-                                <button id="get-number-fact"
-                                    class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center">
-                                    <i data-lucide="search" class="w-4 h-4 mr-2"></i>Lấy fact
-                                </button>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button id="random-number"
-                                    class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
-                                    <i data-lucide="shuffle" class="w-4 h-4 mr-1"></i>Số ngẫu nhiên
-                                </button>
-                                <button id="today-date"
-                                    class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
-                                    <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>Ngày hôm nay
-                                </button>
-                            </div>
-                            <div id="number-fact-content" class="fact-content bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                                <p class="text-gray-600 dark:text-gray-300">Nhập một số để xem fact thú vị!</p>
-                            </div>
-                            <div id="number-fact-translation"
-                                class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                                <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-400"></p>
-                            </div>
+                        <div class="flex space-x-2">
+                            <button id="random-number"
+                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
+                                <i data-lucide="shuffle" class="w-4 h-4 mr-1"></i>Số ngẫu nhiên
+                            </button>
+                            <button id="today-date"
+                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>Ngày hôm nay
+                            </button>
                         </div>
-                    </div>
-                </section>
-
-                <section id="cat-fact"
-                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="cat" class="w-6 h-6 mr-2 text-primary"></i>Cat Fact
-                        </h2>
-                        <div class="space-y-4">
-                            <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                            <div id="cat-fact-translation"
-                                class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                                <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-400"></p>
-                            </div>
+                        <div id="number-fact-content" class="fact-content bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+                            <p class="text-gray-600 dark:text-gray-300">Nhập một số để xem fact thú vị!</p>
                         </div>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                        <button id="refresh-cat-fact"
-                            class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
-                        </button>
-                    </div>
-                </section>
-
-                <section id="joke"
-                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of the Day
-                        </h2>
-                        <div class="space-y-4">
-                            <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                            <div id="joke-translation"
-                                class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                                <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-400"></p>
-                            </div>
+                        <div id="number-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                        <button id="refresh-joke"
-                            class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Joke mới
-                        </button>
-                    </div>
-                </section>
-
-                <!-- New Quote Section -->
-                <section id="quote" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="quote" class="w-6 h-6 mr-2 text-primary"></i>Quote of the Day
-                        </h2>
-                        <div class="space-y-4">
-                            <p id="quote-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                            <p id="quote-author" class="text-right text-sm italic text-gray-500 dark:text-gray-400"></p>
-                        </div>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                        <button id="refresh-quote" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Quote mới
-                        </button>
-                    </div>
-                </section>
-
-                <!-- New History Section -->
-                <section id="history" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="clock" class="w-6 h-6 mr-2 text-primary"></i>Sự kiện lịch sử trong ngày
-                        </h2>
-                        <div id="history-content" class="space-y-4">
-                            <p class="text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="dog-image"
-                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog Image
-                        </h2>
-                        <div class="flex justify-center mb-4">
-                            <img id="dog-image-content" src="" alt="Random dog"
-                                class="max-w-full h-auto rounded-lg shadow-md">
-                        </div>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                        <button id="refresh-dog-image"
-                            class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Ảnh mới
-                        </button>
-                    </div>
-                </section>
-
-                <!-- New Science News Section -->
-                <section id="science" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
-                    <div class="p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                            <i data-lucide="flask" class="w-6 h-6 mr-2 text-primary"></i>Tin tức khoa học
-                        </h2>
-                        <div id="science-content" class="space-y-4">
-                            <p class="text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-
-        <footer
-            class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-8 mt-12 transition-colors duration-300">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-4 md:mb-0 text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-primary flex items-center justify-center md:justify-start">
-                            <i data-lucide="zap" class="w-6 h-6 mr-2"></i>FunFacts Hub
-                        </h3>
-                        <p>Khám phá điều thú vị mỗi ngày</p>
-                    </div>
-                    <div class="flex flex-wrap justify-center md:justify-end space-x-4">
-                        <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                            <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về chúng tôi
-                        </a>
-                        <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                            <i data-lucide="shield" class="w-4 h-4 mr-1"></i>Chính sách bảo mật
-                        </a>
-                        <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                            <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên hệ
-                        </a>
                     </div>
                 </div>
-                <div class="mt-8 flex justify-center space-x-4">
-                    <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer"
-                        class="text-gray-400 hover:text-primary transition duration-300">
-                        <i data-lucide="github" class="w-6 h-6"></i>
-                        <span class="sr-only">GitHub</span>
+            </section>
+
+            <section id="cat-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="cat" class="w-6 h-6 mr-2 text-primary"></i>Cat Fact
+                    </h2>
+                    <div class="space-y-4">
+                        <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
+                        <div id="cat-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-cat-fact"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
+                    </button>
+                </div>
+            </section>
+
+            <section id="joke"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of the Day
+                    </h2>
+                    <div class="space-y-4">
+                        <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
+                        <div id="joke-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-joke"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Joke mới
+                    </button>
+                </div>
+            </section>
+
+            <section id="dog-image"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog Image
+                    </h2>
+                    <div class="flex justify-center mb-4">
+                        <img id="dog-image-content" src="" alt="Random dog"
+                            class="max-w-full h-auto rounded-lg shadow-md">
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-dog-image"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Ảnh mới
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer
+        class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-8 mt-12 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-primary flex items-center justify-center md:justify-start">
+                        <i data-lucide="zap" class="w-6 h-6 mr-2"></i>FunFacts Hub
+                    </h3>
+                    <p>Khám phá điều thú vị mỗi ngày</p>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-end space-x-4">
+                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
+                        <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về chúng tôi
                     </a>
-                    <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer"
-                        class="text-gray-400 hover:text-primary transition duration-300">
-                        <i data-lucide="facebook" class="w-6 h-6"></i>
-                        <span class="sr-only">Facebook</span>
+                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
+                        <i data-lucide="shield" class="w-4 h-4 mr-1"></i>Chính sách bảo mật
+                    </a>
+                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
+                        <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên hệ
                     </a>
                 </div>
-                <div class="mt-4 text-center text-sm">
-                    &copy; 2024 FunFacts Hub | Tanbaycu
-                </div>
             </div>
-        </footer>
-    </div>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-primary transition duration-300">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-primary transition duration-300">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+            </div>
+            <div class="mt-4 text-center text-sm">
+                &copy; 2024 FunFacts Hub | Tanbaycu
+            </div>
+        </div>
+    </footer>
 
     <div id="loading-overlay"
         class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
@@ -413,19 +347,21 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const mainContent = document.querySelector('.main-content');
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
         const loadingOverlay = document.getElementById('loading-overlay');
         const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-        const toggleSidebar = () => {
-            sidebar.style.width = sidebar.style.width === '250px' ? '0'
- : '250px';
-            mainContent.style.marginLeft = mainContent.style.marginLeft === '250px' ? '0' : '250px';
+        const toggleMenu = () => {
+            menu.classList.toggle('hidden');
+            if (!menu.classList.contains('hidden')) {
+                menu.style.maxHeight = menu.scrollHeight + "px";
+            } else {
+                menu.style.maxHeight = "0px";
+            }
         };
 
-        sidebarToggle.addEventListener('click', toggleSidebar);
+        menuToggle.addEventListener('click', toggleMenu);
 
         darkModeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
@@ -601,93 +537,28 @@
 
         refreshDogImage.addEventListener('click', fetchDogImage);
 
-        // Quote
-        const quoteContent = document.getElementById('quote-content');
-        const quoteAuthor = document.getElementById('quote-author');
-        const refreshQuote = document.getElementById('refresh-quote');
-
-        const fetchQuote = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/quote');
-                const data = await response.json();
-                quoteContent.textContent = data.content;
-                quoteAuthor.textContent = `- ${data.author}`;
-            } catch (error) {
-                console.error('Error fetching quote:', error);
-                quoteContent.textContent = 'Không thể tải quote. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshQuote.addEventListener('click', fetchQuote);
-
-        // History
-        const historyContent = document.getElementById('history-content');
-
-        const fetchHistoryEvent = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/history');
-                const data = await response.json();
-                const event = data.data.Events[Math.floor(Math.random() * data.data.Events.length)];
-                historyContent.innerHTML = `
-                    <p class="text-lg font-semibold">${event.year}</p>
-                    <p class="text-gray-600 dark:text-gray-300">${event.text}</p>
-                `;
-            } catch (error) {
-                console.error('Error fetching history event:', error);
-                historyContent.textContent = 'Không thể tải sự kiện lịch sử. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        // Science News
-        const scienceContent = document.getElementById('science-content');
-
-        const fetchScienceNews = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/science-news');
-                const article = await response.json();
-                scienceContent.innerHTML = `
-                    <h3 class="text-lg font-semibold">${article.title}</h3>
-                    <p class="text-gray-600 dark:text-gray-300">${article.summary}</p>
-                    <a href="${article.url}" target="_blank" class="text-primary hover:underline">Đọc thêm</a>
-                `;
-            } catch (error) {
-                console.error('Error fetching science news:', error);
-                scienceContent.textContent = 'Không thể tải tin tức khoa học. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
         // Initial load
         fetchUselessFact();
         fetchNumberFact();
         fetchCatFact();
         fetchJoke();
         fetchDogImage();
-        fetchQuote();
-        fetchHistoryEvent();
-        fetchScienceNews();
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target) && window.innerWidth <= 768) {
-                sidebar.style.width = '0';
-                mainContent.style.marginLeft = '0';
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target) && !menu.classList.contains('hidden')) {
+                toggleMenu();
             }
         });
 
         // Handle window resize
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                sidebar.style.width = '250px';
-                mainContent.style.marginLeft = '250px';
+            if (window.innerWidth >= 1024) { // lg breakpoint
+                menu.classList.remove('hidden');
+                menu.style.maxHeight = "none";
             } else {
-                sidebar.style.width = '0';
-                mainContent.style.marginLeft = '0';
+                menu.classList.add('hidden');
+                menu.style.maxHeight = "0px";
             }
         });
 
@@ -698,9 +569,8 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                if (window.innerWidth <= 768) {
-                    sidebar.style.width = '0';
-                    mainContent.style.marginLeft = '0';
+                if (window.innerWidth < 1024) {
+                    toggleMenu();
                 }
             });
         });
@@ -741,21 +611,6 @@
                         case 'dog-image':
                             if (!dogImageContent.src) {
                                 fetchDogImage();
-                            }
-                            break;
-                        case 'quote':
-                            if (!quoteContent.textContent || quoteContent.textContent === 'Đang tải...') {
-                                fetchQuote();
-                            }
-                            break;
-                        case 'history':
-                            if (!historyContent.textContent || historyContent.textContent === 'Đang tải...') {
-                                fetchHistoryEvent();
-                            }
-                            break;
-                        case 'science':
-                            if (!scienceContent.textContent || scienceContent.textContent === 'Đang tải...') {
-                                fetchScienceNews();
                             }
                             break;
                     }
