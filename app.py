@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from deep_translator import GoogleTranslator
 import requests
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -53,8 +54,26 @@ def dog_image():
     data = response.json()
     return jsonify({'image_url': data['message']})
 
+@app.route('/quote')
+def quote():
+    response = requests.get('https://api.quotable.io/random')
+    data = response.json()
+    return jsonify({'content': data['content'], 'author': data['author']})
+
+@app.route('/history')
+def history():
+    today = datetime.now()
+    response = requests.get(f'http://history.muffinlabs.com/date/{today.month}/{today.day}')
+    data = response.json()
+    return jsonify(data)
+
+@app.route('/science-news')
+def science_news():
+    response = requests.get('https://api.spaceflightnewsapi.net/v3/articles?_limit=1')
+    data = response.json()
+    return jsonify(data[0])
+
 if __name__ == '__main__':
     app.run(debug=True)
-
 
 app = app.wsgi_app
