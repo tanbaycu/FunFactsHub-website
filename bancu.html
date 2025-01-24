@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
+    <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
+    <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia">
+    <meta name="author" content="Tanbaycu">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
+    <meta property="og:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta property="og:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
+    <meta property="og:url" content="https://funfactshub.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
+    <meta name="twitter:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta name="twitter:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
+    <link rel="canonical" href="https://your-funfacts-hub-url.com">
+    <link rel="alternate" hreflang="en" href="https://funfactshub.vercel.app//en/">
+    <link rel="alternate" hreflang="vi" href="https://funfactshub.vercel.app/vi/">
+    <link rel="icon" href="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png" type="image/png">
+    <meta name="theme-color" content="#6366f1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -27,32 +46,55 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
         .custom-loader {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             background: conic-gradient(#0000 10%, #6366f1);
-            -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 6px),#000 0);
+            -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
             animation: s3 1s infinite linear;
         }
+
         @keyframes s3 {
-            to { transform: rotate(1turn) }
+            to {
+                transform: rotate(1turn)
+            }
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        .fact-content, .fact-translation {
+
+        .fact-content,
+        .fact-translation {
             animation: fadeIn 0.5s ease-in-out;
         }
+
         @keyframes slideDown {
-            from { max-height: 0; }
-            to { max-height: 300px; }
+            from {
+                max-height: 0;
+            }
+
+            to {
+                max-height: 300px;
+            }
         }
 
         @keyframes slideUp {
-            from { max-height: 300px; }
-            to { max-height: 0; }
+            from {
+                max-height: 300px;
+            }
+
+            to {
+                max-height: 0;
+            }
         }
 
         #menu {
@@ -63,12 +105,14 @@
             #menu:not(.hidden) {
                 animation: slideDown 0.3s ease-out forwards;
             }
+
             #menu.hidden {
                 animation: slideUp 0.3s ease-out forwards;
             }
         }
     </style>
 </head>
+
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
     <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
         <div class="container mx-auto px-4">
@@ -78,223 +122,175 @@
                     FunFacts Hub
                 </a>
                 <div class="flex items-center space-x-4">
-                    <button id="dark-mode-toggle" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
+                    <button id="dark-mode-toggle"
+                        class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
                         <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
                         <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
                     </button>
-                    <button id="menu-toggle" class="lg:hidden text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300" aria-label="Toggle menu">
+                    <button id="menu-toggle"
+                        class="lg:hidden text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300"
+                        aria-label="Toggle menu">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <nav id="menu" class="hidden lg:block bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-all duration-300 overflow-hidden max-h-0 lg:max-h-none">
+        <nav id="menu"
+            class="hidden lg:block bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-all duration-300 overflow-hidden max-h-0 lg:max-h-none">
             <div class="container mx-auto px-4">
-                <ul class="flex flex-col lg:flex-row lg:items-center lg:justify-end space-y-2 lg:space-y-0 lg:space-x-8 py-4 lg:py-0">
-                    <li><a href="#useless-fact" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Useless Fact</a></li>
-                    <li><a href="#number-fact" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Number Fact</a></li>
-                    <li><a href="#cat-fact" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Cat Fact</a></li>
-                    <li><a href="#joke" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Joke</a></li>
-                    <li><a href="#quote" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Quote</a></li>
-                    <li><a href="#trivia" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Trivia</a></li>
-                    <li><a href="#advice" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Advice</a></li>
-                    <li><a href="#activity" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Activity</a></li>
-                    <li><a href="#dog-image" class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Dog Image</a></li>
+                <ul
+                    class="flex flex-col lg:flex-row lg:items-center lg:justify-end space-y-2 lg:space-y-0 lg:space-x-8 py-4 lg:py-0">
+                    <li><a href="#useless-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Useless
+                            Fact</a></li>
+                    <li><a href="#number-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Number
+                            Fact</a></li>
+                    <li><a href="#cat-fact"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Cat
+                            Fact</a></li>
+                    <li><a href="#joke"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Joke</a>
+                    </li>
+                    <li><a href="#dog-image"
+                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Dog
+                            Image</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám phá điều thú vị mỗi ngày</h1>
-        
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám phá điều thú vị mỗi ngày
+        </h1>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <section id="useless-fact" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+            <section id="useless-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
                         <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless Fact
                     </h2>
                     <div class="space-y-4">
-                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        <div id="useless-fact-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
+                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...
+                        </p>
+                        <div id="useless-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
                     </div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-useless-fact" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                    <button id="refresh-useless-fact"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
                     </button>
                 </div>
             </section>
 
-            <section id="number-fact" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+            <section id="number-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
                         <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number Fact
                     </h2>
                     <div class="space-y-4">
                         <div class="flex space-x-2">
-                            <input type="number" id="number-input" class="flex-grow bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Nhập số">
-                            <button id="get-number-fact" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center">
+                            <input type="number" id="number-input"
+                                class="flex-grow bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Nhập số">
+                            <button id="get-number-fact"
+                                class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center">
                                 <i data-lucide="search" class="w-4 h-4 mr-2"></i>Lấy fact
                             </button>
                         </div>
                         <div class="flex space-x-2">
-                            <button id="random-number" class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
+                            <button id="random-number"
+                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
                                 <i data-lucide="shuffle" class="w-4 h-4 mr-1"></i>Số ngẫu nhiên
                             </button>
-                            <button id="today-date" class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
+                            <button id="today-date"
+                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
                                 <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>Ngày hôm nay
                             </button>
                         </div>
                         <div id="number-fact-content" class="fact-content bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
                             <p class="text-gray-600 dark:text-gray-300">Nhập một số để xem fact thú vị!</p>
                         </div>
-                        <div id="number-fact-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
+                        <div id="number-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="cat-fact" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+            <section id="cat-fact"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
                         <i data-lucide="cat" class="w-6 h-6 mr-2 text-primary"></i>Cat Fact
                     </h2>
                     <div class="space-y-4">
                         <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        <div id="cat-fact-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
+                        <div id="cat-fact-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
                     </div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-cat-fact" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                    <button id="refresh-cat-fact"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
                     </button>
                 </div>
             </section>
 
-            <section id="joke" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+            <section id="joke"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
                         <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of the Day
                     </h2>
                     <div class="space-y-4">
                         <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        <div id="joke-translation" class="fact-translation bg-gray-100 dark:bg-gray-700  rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
+                        <div id="joke-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
                     </div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-joke" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                    <button id="refresh-joke"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Joke mới
                     </button>
                 </div>
             </section>
 
-            <section id="quote" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="quote" class="w-6 h-6 mr-2 text-primary"></i>Random Quote
-                    </h2>
-                    <div class="space-y-4">
-                        <blockquote id="quote-content" class="fact-content text-gray-600 dark:text-gray-300 italic">Đang tải...</blockquote>
-                        <p id="quote-author" class="text-right text-gray-500 dark:text-gray-400"></p>
-                        <div id="quote-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-quote" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Quote mới
-                    </button>
-                </div>
-            </section>
-
-            <section id="trivia" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="help-circle" class="w-6 h-6 mr-2 text-primary"></i>Random Trivia
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="trivia-question" class="fact-content text-gray-600 dark:text-gray-300 font-semibold">Đang tải...</p>
-                        <p id="trivia-answer" class="text-gray-500 dark:text-gray-400 hidden"></p>
-                        <button id="show-answer" class="bg-secondary text-white px-4 py-2 rounded-md hover:bg-secondary-dark transition duration-300">Hiện câu trả lời</button>
-                        <div id="trivia-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-trivia" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Trivia mới
-                    </button>
-                </div>
-            </section>
-
-            <section id="advice" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="message-circle" class="w-6 h-6 mr-2 text-primary"></i>Random Advice
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="advice-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        <div id="advice-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-advice" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Lời khuyên mới
-                    </button>
-                </div>
-            </section>
-
-            <section id="activity" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="activity" class="w-6 h-6 mr-2 text-primary"></i>Random Activity
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="activity-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
-                        <p id="activity-type" class="text-sm text-gray-500 dark:text-gray-400"></p>
-                        <div id="activity-translation" class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-activity" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Hoạt động mới
-                    </button>
-                </div>
-            </section>
-
-            <section id="dog-image" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
+            <section id="dog-image"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
                         <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog Image
                     </h2>
                     <div class="flex justify-center mb-4">
-                        <img id="dog-image-content" src="" alt="Random dog" class="max-w-full h-auto rounded-lg shadow-md">
+                        <img id="dog-image-content" src="" alt="Random dog"
+                            class="max-w-full h-auto rounded-lg shadow-md">
                     </div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-dog-image" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                    <button id="refresh-dog-image"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Ảnh mới
                     </button>
                 </div>
@@ -302,11 +298,11 @@
         </div>
     </main>
 
-    <footer class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-8 mt-12 transition-colors duration-300">
+    <footer
+        class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-8 mt-12 transition-colors duration-300">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0 text-center md:text-left">
-                    
                     <h3 class="text-2xl font-bold text-primary flex items-center justify-center md:justify-start">
                         <i data-lucide="zap" class="w-6 h-6 mr-2"></i>FunFacts Hub
                     </h3>
@@ -325,22 +321,25 @@
                 </div>
             </div>
             <div class="mt-8 flex justify-center space-x-4">
-                <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300">
+                <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-primary transition duration-300">
                     <i data-lucide="github" class="w-6 h-6"></i>
                     <span class="sr-only">GitHub</span>
                 </a>
-                <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300">
+                <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-primary transition duration-300">
                     <i data-lucide="facebook" class="w-6 h-6"></i>
                     <span class="sr-only">Facebook</span>
                 </a>
             </div>
             <div class="mt-4 text-center text-sm">
-                &copy; 2024 FunFacts Hub |   Tanbaycu
+                &copy; 2024 FunFacts Hub | Tanbaycu
             </div>
         </div>
     </footer>
 
-    <div id="loading-overlay" class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
+    <div id="loading-overlay"
+        class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
         <div class="custom-loader"></div>
     </div>
 
@@ -370,7 +369,7 @@
         });
 
         // Check for user's preference
-        if (localStorage.getItem('darkMode') === 'true' || 
+        if (localStorage.getItem('darkMode') === 'true' ||
             (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         }
@@ -389,15 +388,15 @@
         const translateToVietnamese = async (text, translationElement) => {
             showLoading();
             try {
-                const response = await fetch('https://api.mymemory.translated.net/get', {
+                const response = await fetch('/translate', {
                     method: 'POST',
-                    body: new URLSearchParams({
-                        q: text,
-                        langpair: 'en|vi'
-                    })
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: text })
                 });
                 const data = await response.json();
-                const translation = data.responseData.translatedText;
+                const translation = data.translation;
                 translationElement.querySelector('p').textContent = translation;
                 translationElement.classList.remove('hidden');
                 translationElement.style.opacity = 0;
@@ -406,7 +405,7 @@
                 }, 50);
             } catch (error) {
                 console.error('Error translating:', error);
-                translationElement.querySelector('p').textContent = 'Không thể dịch. Vui lòng thử  lại sau.';
+                translationElement.querySelector('p').textContent = 'Không thể dịch. Vui lòng thử lại sau.';
             }
             hideLoading();
         };
@@ -419,10 +418,10 @@
         const fetchUselessFact = async () => {
             showLoading();
             try {
-                const response = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+                const response = await fetch('/useless-fact');
                 const data = await response.json();
-                uselessFactContent.textContent = data.text;
-                translateToVietnamese(data.text, uselessFactTranslation);
+                uselessFactContent.textContent = data.fact;
+                translateToVietnamese(data.fact, uselessFactTranslation);
             } catch (error) {
                 console.error('Error fetching useless fact:', error);
                 uselessFactContent.textContent = 'Không thể tải fact. Vui lòng thử lại sau.';
@@ -444,10 +443,10 @@
             const number = numberInput.value || 'random';
             showLoading();
             try {
-                const response = await fetch(`http://numbersapi.com/${number}`);
-                const data = await response.text();
-                numberFactContent.innerHTML = `<p class="text-gray-600 dark:text-gray-300">${data}</p>`;
-                translateToVietnamese(data, numberFactTranslation);
+                const response = await fetch(`/number-fact?number=${number}`);
+                const data = await response.json();
+                numberFactContent.innerHTML = `<p class="text-gray-600 dark:text-gray-300">${data.fact}</p>`;
+                translateToVietnamese(data.fact, numberFactTranslation);
             } catch (error) {
                 console.error('Error fetching number fact:', error);
                 numberFactContent.innerHTML = '<p class="text-gray-600 dark:text-gray-300">Không thể tải fact. Vui lòng thử lại sau.</p>';
@@ -484,7 +483,7 @@
         const fetchCatFact = async () => {
             showLoading();
             try {
-                const response = await fetch('https://catfact.ninja/fact');
+                const response = await fetch('/cat-fact');
                 const data = await response.json();
                 catFactContent.textContent = data.fact;
                 translateToVietnamese(data.fact, catFactTranslation);
@@ -505,16 +504,10 @@
         const fetchJoke = async () => {
             showLoading();
             try {
-                const response = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit');
+                const response = await fetch('/joke');
                 const data = await response.json();
-                let joke;
-                if (data.type === 'single') {
-                    joke = data.joke;
-                } else {
-                    joke = `${data.setup} ${data.delivery}`;
-                }
-                jokeContent.textContent = joke;
-                translateToVietnamese(joke, jokeTranslation);
+                jokeContent.textContent = data.joke;
+                translateToVietnamese(data.joke, jokeTranslation);
             } catch (error) {
                 console.error('Error fetching joke:', error);
                 jokeContent.textContent = 'Không thể tải joke. Vui lòng thử lại sau.';
@@ -524,109 +517,6 @@
 
         refreshJoke.addEventListener('click', fetchJoke);
 
-        // Quote
-        const quoteContent = document.getElementById('quote-content');
-        const quoteAuthor = document.getElementById('quote-author');
-        const quoteTranslation = document.getElementById('quote-translation');
-        const refreshQuote = document.getElementById('refresh-quote');
-
-        const fetchQuote = async () => {
-            showLoading();
-            try {
-                const response = await fetch('https://api.quotable.io/random');
-                const data = await response.json();
-                quoteContent.textContent = data.content;
-                quoteAuthor.textContent = `- ${data.author}`;
-                translateToVietnamese(data.content, quoteTranslation);
-            } catch (error) {
-                console.error('Error fetching quote:', error);
-                quoteContent.textContent = 'Không thể tải quote. Vui lòng thử lại sau.';
-                quoteAuthor.textContent = '';
-            }
-            hideLoading();
-        };
-
-        refreshQuote.addEventListener('click', fetchQuote);
-
-        // Trivia
-        const triviaQuestion = document.getElementById('trivia-question');
-        const triviaAnswer = document.getElementById('trivia-answer');
-        const triviaTranslation = document.getElementById('trivia-translation');
-        const showAnswerBtn = document.getElementById('show-answer');
-        const refreshTrivia = document.getElementById('refresh-trivia');
-
-        const fetchTrivia = async () => {
-            showLoading();
-            try {
-                const response = await fetch('https://opentdb.com/api.php?amount=1&type=multiple');
-                const data = await response.json();
-                const question = data.results[0].question;
-                const answer = data.results[0].correct_answer;
-                triviaQuestion.textContent = question;
-                triviaAnswer.textContent = answer;
-                triviaAnswer.classList.add('hidden');
-                showAnswerBtn.textContent = 'Hiện câu trả lời';
-                translateToVietnamese(question, triviaTranslation);
-            } catch (error) {
-                console.error('Error fetching trivia:', error);
-                triviaQuestion.textContent = 'Không thể tải trivia. Vui lòng thử lại sau.';
-                triviaAnswer.textContent = '';
-            }
-            hideLoading();
-        };
-
-        showAnswerBtn.addEventListener('click', () => {
-            triviaAnswer.classList.toggle('hidden');
-            showAnswerBtn.textContent = triviaAnswer.classList.contains('hidden') ? 'Hiện câu trả lời' : 'Ẩn câu trả lời';
-        });
-
-        refreshTrivia.addEventListener('click', fetchTrivia);
-
-        // Advice
-        const adviceContent = document.getElementById('advice-content');
-        const adviceTranslation = document.getElementById('advice-translation');
-        const refreshAdvice = document.getElementById('refresh-advice');
-
-        const fetchAdvice = async () => {
-            showLoading();
-            try {
-                const response = await fetch('https://api.adviceslip.com/advice');
-                const data = await response.json();
-                adviceContent.textContent = data.slip.advice;
-                translateToVietnamese(data.slip.advice, adviceTranslation);
-            } catch (error) {
-                console.error('Error fetching advice:', error);
-                adviceContent.textContent = 'Không thể tải lời khuyên. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshAdvice.addEventListener('click', fetchAdvice);
-
-        // Activity
-        const activityContent = document.getElementById('activity-content');
-        const activityType = document.getElementById('activity-type');
-        const activityTranslation = document.getElementById('activity-translation');
-        const refreshActivity = document.getElementById('refresh-activity');
-
-        const fetchActivity = async () => {
-            showLoading();
-            try {
-                const response = await fetch('https://www.boredapi.com/api/activity');
-                const data = await response.json();
-                activityContent.textContent = data.activity;
-                activityType.textContent = `Type: ${data.type}`;
-                translateToVietnamese(data.activity, activityTranslation);
-            } catch (error) {
-                console.error('Error fetching activity:', error);
-                activityContent.textContent = 'Không thể tải hoạt động. Vui lòng thử lại sau.';
-                activityType.textContent = '';
-            }
-            hideLoading();
-        };
-
-        refreshActivity.addEventListener('click', fetchActivity);
-
         // Dog Image
         const dogImageContent = document.getElementById('dog-image-content');
         const refreshDogImage = document.getElementById('refresh-dog-image');
@@ -634,9 +524,9 @@
         const fetchDogImage = async () => {
             showLoading();
             try {
-                const response = await fetch('https://dog.ceo/api/breeds/image/random');
+                const response = await fetch('/dog-image');
                 const data = await response.json();
-                dogImageContent.src = data.message;
+                dogImageContent.src = data.image_url;
                 dogImageContent.alt = 'Random dog image';
             } catch (error) {
                 console.error('Error fetching dog image:', error);
@@ -652,10 +542,6 @@
         fetchNumberFact();
         fetchCatFact();
         fetchJoke();
-        fetchQuote();
-        fetchTrivia();
-        fetchAdvice();
-        fetchActivity();
         fetchDogImage();
 
         // Close mobile menu when clicking outside
@@ -722,26 +608,6 @@
                                 fetchJoke();
                             }
                             break;
-                        case 'quote':
-                            if (!quoteContent.textContent || quoteContent.textContent === 'Đang tải...') {
-                                fetchQuote();
-                            }
-                            break;
-                        case 'trivia':
-                            if (!triviaQuestion.textContent || triviaQuestion.textContent === 'Đang tải...') {
-                                fetchTrivia();
-                            }
-                            break;
-                        case 'advice':
-                            if (!adviceContent.textContent || adviceContent.textContent === 'Đang tải...') {
-                                fetchAdvice();
-                            }
-                            break;
-                        case 'activity':
-                            if (!activityContent.textContent || activityContent.textContent === 'Đang tải...') {
-                                fetchActivity();
-                            }
-                            break;
                         case 'dog-image':
                             if (!dogImageContent.src) {
                                 fetchDogImage();
@@ -758,4 +624,5 @@
         });
     </script>
 </body>
+
 </html>

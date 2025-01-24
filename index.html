@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
-    <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
+    <meta name="description"
+        content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
     <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia">
     <meta name="author" content="Tanbaycu">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta property="og:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta property="og:description"
+        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
     <meta property="og:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
     <meta property="og:url" content="https://funfactshub.vercel.app/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta name="twitter:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta name="twitter:description"
+        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
     <meta name="twitter:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
     <link rel="canonical" href="https://your-funfacts-hub-url.com">
     <link rel="alternate" hreflang="en" href="https://funfactshub.vercel.app//en/">
@@ -47,30 +50,206 @@
             font-family: 'Inter', sans-serif;
         }
 
+        
         .custom-loader {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: conic-gradient(#0000 10%, #6366f1);
-            -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
-            animation: s3 1s infinite linear;
+            --background: #62abff;
+            --front-color: #4f29f0;
+            --back-color: #c3c8de;
+            --text-color: #414856;
+            width: 64px;
+            height: 64px;
+            border-radius: 50px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes s3 {
-            to {
-                transform: rotate(1turn)
+        .custom-loader svg {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-loader svg circle {
+            position: absolute;
+            fill: none;
+            stroke-width: 6px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: rotate(-100deg);
+            transform-origin: center;
+        }
+
+        .custom-loader svg circle.back {
+            stroke: var(--back-color);
+        }
+
+        .custom-loader svg circle.front {
+            stroke: var(--front-color);
+        }
+
+        .custom-loader svg.circle-outer {
+            height: 86px;
+            width: 86px;
+        }
+
+        .custom-loader svg.circle-outer circle {
+            stroke-dasharray: 62.75 188.25;
+        }
+
+        .custom-loader svg.circle-outer circle.back {
+            animation: circle-outer135 1.8s ease infinite 0.3s;
+        }
+
+        .custom-loader svg.circle-outer circle.front {
+            animation: circle-outer135 1.8s ease infinite 0.15s;
+        }
+
+        .custom-loader svg.circle-middle {
+            height: 60px;
+            width: 60px;
+        }
+
+        .custom-loader svg.circle-middle circle {
+            stroke-dasharray: 42.5 127.5;
+        }
+
+        .custom-loader svg.circle-middle circle.back {
+            animation: circle-middle6123 1.8s ease infinite 0.25s;
+        }
+
+        .custom-loader svg.circle-middle circle.front {
+            animation: circle-middle6123 1.8s ease infinite 0.1s;
+        }
+
+        .custom-loader svg.circle-inner {
+            height: 34px;
+            width: 34px;
+        }
+
+        .custom-loader svg.circle-inner circle {
+            stroke-dasharray: 22 66;
+        }
+
+        .custom-loader svg.circle-inner circle.back {
+            animation: circle-inner162 1.8s ease infinite 0.2s;
+        }
+
+        .custom-loader svg.circle-inner circle.front {
+            animation: circle-inner162 1.8s ease infinite 0.05s;
+        }
+
+        .custom-loader .text {
+            position: absolute;
+            bottom: -40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: lowercase;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        .custom-loader .text::before,
+        .custom-loader .text::after {
+            content: attr(data-text);
+        }
+
+        .custom-loader .text::before {
+            color: var(--text-color);
+        }
+
+        .custom-loader .text::after {
+            color: var(--front-color);
+            animation: text-animation76 3.6s ease infinite;
+            position: absolute;
+            left: 0;
+        }
+
+        @keyframes circle-outer135 {
+            0% {
+                stroke-dashoffset: 25;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 301;
+            }
+
+            80% {
+                stroke-dashoffset: 276;
+            }
+
+            100% {
+                stroke-dashoffset: 276;
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        @keyframes circle-middle6123 {
+            0% {
+                stroke-dashoffset: 17;
             }
 
-            to {
-                opacity: 1;
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 204;
+            }
+
+            80% {
+                stroke-dashoffset: 187;
+            }
+
+            100% {
+                stroke-dashoffset: 187;
             }
         }
+
+        @keyframes circle-inner162 {
+            0% {
+                stroke-dashoffset: 9;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 106;
+            }
+
+            80% {
+                stroke-dashoffset: 97;
+            }
+
+            100% {
+                stroke-dashoffset: 97;
+            }
+        }
+
+        @keyframes text-animation76 {
+            0% {
+                clip-path: inset(0 100% 0 0);
+            }
+
+            50% {
+                clip-path: inset(0);
+            }
+
+            100% {
+                clip-path: inset(0 0 0 100%);
+            }
+        }
+
+
 
         .fact-content,
         .fact-translation {
@@ -340,7 +519,23 @@
 
     <div id="loading-overlay"
         class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
-        <div class="custom-loader"></div>
+        <!-- Nội dung mới từ Uiverse.io -->
+        <div class="custom-loader">
+            <svg class="circle-outer" viewBox="0 0 86 86">
+                <circle class="back" cx="43" cy="43" r="40"></circle>
+                <circle class="front" cx="43" cy="43" r="40"></circle>
+                <circle class="new" cx="43" cy="43" r="40"></circle>
+            </svg>
+            <svg class="circle-middle" viewBox="0 0 60 60">
+                <circle class="back" cx="30" cy="30" r="27"></circle>
+                <circle class="front" cx="30" cy="30" r="27"></circle>
+            </svg>
+            <svg class="circle-inner" viewBox="0 0 34 34">
+                <circle class="back" cx="17" cy="17" r="14"></circle>
+                <circle class="front" cx="17" cy="17" r="14"></circle>
+            </svg>
+            <div class="text" data-text="Searching"></div>
+        </div>
     </div>
 
     <script>
