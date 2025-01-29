@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
-    <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
+    <meta name="description"
+        content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
     <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia">
     <meta name="author" content="Tanbaycu">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta property="og:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
-    <meta property="og:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
+    <meta property="og:description"
+        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta property="og:image" content="https://i.postimg.cc/MHyrgFCR/Thi-t-k-ch-a-c-t-n-15.png">
     <meta property="og:url" content="https://funfactshub.vercel.app/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta name="twitter:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta name="twitter:description"
+        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
     <meta name="twitter:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
     <link rel="canonical" href="https://your-funfacts-hub-url.com">
     <link rel="alternate" hreflang="en" href="https://funfactshub.vercel.app//en/">
     <link rel="alternate" hreflang="vi" href="https://funfactshub.vercel.app/vi/">
-    <link rel="icon" href="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png" type="image/png">
+    <link rel="icon" href="https://i.postimg.cc/MHyrgFCR/Thi-t-k-ch-a-c-t-n-15.png" type="image/png">
     <meta name="theme-color" content="#6366f1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -47,30 +50,206 @@
             font-family: 'Inter', sans-serif;
         }
 
+
         .custom-loader {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: conic-gradient(#0000 10%, #6366f1);
-            -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
-            animation: s3 1s infinite linear;
+            --background: #62abff;
+            --front-color: #4f29f0;
+            --back-color: #c3c8de;
+            --text-color: #414856;
+            width: 64px;
+            height: 64px;
+            border-radius: 50px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes s3 {
-            to {
-                transform: rotate(1turn)
+        .custom-loader svg {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-loader svg circle {
+            position: absolute;
+            fill: none;
+            stroke-width: 6px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: rotate(-100deg);
+            transform-origin: center;
+        }
+
+        .custom-loader svg circle.back {
+            stroke: var(--back-color);
+        }
+
+        .custom-loader svg circle.front {
+            stroke: var(--front-color);
+        }
+
+        .custom-loader svg.circle-outer {
+            height: 86px;
+            width: 86px;
+        }
+
+        .custom-loader svg.circle-outer circle {
+            stroke-dasharray: 62.75 188.25;
+        }
+
+        .custom-loader svg.circle-outer circle.back {
+            animation: circle-outer135 1.8s ease infinite 0.3s;
+        }
+
+        .custom-loader svg.circle-outer circle.front {
+            animation: circle-outer135 1.8s ease infinite 0.15s;
+        }
+
+        .custom-loader svg.circle-middle {
+            height: 60px;
+            width: 60px;
+        }
+
+        .custom-loader svg.circle-middle circle {
+            stroke-dasharray: 42.5 127.5;
+        }
+
+        .custom-loader svg.circle-middle circle.back {
+            animation: circle-middle6123 1.8s ease infinite 0.25s;
+        }
+
+        .custom-loader svg.circle-middle circle.front {
+            animation: circle-middle6123 1.8s ease infinite 0.1s;
+        }
+
+        .custom-loader svg.circle-inner {
+            height: 34px;
+            width: 34px;
+        }
+
+        .custom-loader svg.circle-inner circle {
+            stroke-dasharray: 22 66;
+        }
+
+        .custom-loader svg.circle-inner circle.back {
+            animation: circle-inner162 1.8s ease infinite 0.2s;
+        }
+
+        .custom-loader svg.circle-inner circle.front {
+            animation: circle-inner162 1.8s ease infinite 0.05s;
+        }
+
+        .custom-loader .text {
+            position: absolute;
+            bottom: -40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: lowercase;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        .custom-loader .text::before,
+        .custom-loader .text::after {
+            content: attr(data-text);
+        }
+
+        .custom-loader .text::before {
+            color: var(--text-color);
+        }
+
+        .custom-loader .text::after {
+            color: var(--front-color);
+            animation: text-animation76 3.6s ease infinite;
+            position: absolute;
+            left: 0;
+        }
+
+        @keyframes circle-outer135 {
+            0% {
+                stroke-dashoffset: 25;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 301;
+            }
+
+            80% {
+                stroke-dashoffset: 276;
+            }
+
+            100% {
+                stroke-dashoffset: 276;
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        @keyframes circle-middle6123 {
+            0% {
+                stroke-dashoffset: 17;
             }
 
-            to {
-                opacity: 1;
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 204;
+            }
+
+            80% {
+                stroke-dashoffset: 187;
+            }
+
+            100% {
+                stroke-dashoffset: 187;
             }
         }
+
+        @keyframes circle-inner162 {
+            0% {
+                stroke-dashoffset: 9;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 106;
+            }
+
+            80% {
+                stroke-dashoffset: 97;
+            }
+
+            100% {
+                stroke-dashoffset: 97;
+            }
+        }
+
+        @keyframes text-animation76 {
+            0% {
+                clip-path: inset(0 100% 0 0);
+            }
+
+            50% {
+                clip-path: inset(0);
+            }
+
+            100% {
+                clip-path: inset(0 0 0 100%);
+            }
+        }
+
+
 
         .fact-content,
         .fact-translation {
@@ -108,6 +287,50 @@
 
             #menu.hidden {
                 animation: slideUp 0.3s ease-out forwards;
+            }
+        }
+
+        /* Hiệu ứng gradient text cho chữ "Tanbaycu" */
+        .highlight-text {
+            background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-text 3s linear infinite;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Hiệu ứng chữ tan biến (fade-in, fade-out) */
+        @keyframes fade-in-out {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .highlight-text {
+            animation: fade-in-out 2s ease-in-out infinite;
+        }
+
+        /* Hoặc hiệu ứng gradient text animation */
+        @keyframes gradient-text {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
             }
         }
     </style>
@@ -161,7 +384,8 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám phá điều thú vị mỗi ngày
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám
+            phá điều thú vị mỗi ngày
         </h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -169,14 +393,17 @@
                 class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless Fact
+                        <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless
+                        Fact
                     </h2>
                     <div class="space-y-4">
-                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...
+                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
+                            tải...
                         </p>
                         <div id="useless-fact-translation"
                             class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
+                                dịch tiếng Việt:
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
@@ -194,7 +421,8 @@
                 class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number Fact
+                        <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number
+                        Fact
                     </h2>
                     <div class="space-y-4">
                         <div class="flex space-x-2">
@@ -217,11 +445,13 @@
                             </button>
                         </div>
                         <div id="number-fact-content" class="fact-content bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                            <p class="text-gray-600 dark:text-gray-300">Nhập một số để xem fact thú vị!</p>
+                            <p class="text-gray-600 dark:text-gray-300">Nhập
+                                một số để xem fact thú vị!</p>
                         </div>
                         <div id="number-fact-translation"
                             class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
+                                dịch tiếng Việt:
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
@@ -236,10 +466,12 @@
                         <i data-lucide="cat" class="w-6 h-6 mr-2 text-primary"></i>Cat Fact
                     </h2>
                     <div class="space-y-4">
-                        <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
+                        <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
+                            tải...</p>
                         <div id="cat-fact-translation"
                             class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
+                                dịch tiếng Việt:
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
@@ -257,13 +489,16 @@
                 class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of the Day
+                        <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of
+                        the Day
                     </h2>
                     <div class="space-y-4">
-                        <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang tải...</p>
+                        <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
+                            tải...</p>
                         <div id="joke-translation"
                             class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản dịch tiếng Việt:
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
+                                dịch tiếng Việt:
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400"></p>
                         </div>
@@ -281,11 +516,11 @@
                 class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
                 <div class="p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog Image
+                        <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog
+                        Image
                     </h2>
                     <div class="flex justify-center mb-4">
-                        <img id="dog-image-content" src="" alt="Random dog"
-                            class="max-w-full h-auto rounded-lg shadow-md">
+                        <img id="dog-image-content" src alt="Random dog" class="max-w-full h-auto rounded-lg shadow-md">
                     </div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
@@ -310,13 +545,15 @@
                 </div>
                 <div class="flex flex-wrap justify-center md:justify-end space-x-4">
                     <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                        <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về chúng tôi
+                        <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về
+                        chúng tôi
                     </a>
                     <a href="#" class="hover:text-primary transition duration-300 flex items-center">
                         <i data-lucide="shield" class="w-4 h-4 mr-1"></i>Chính sách bảo mật
                     </a>
                     <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                        <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên hệ
+                        <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên
+                        hệ
                     </a>
                 </div>
             </div>
@@ -326,21 +563,37 @@
                     <i data-lucide="github" class="w-6 h-6"></i>
                     <span class="sr-only">GitHub</span>
                 </a>
-                <a href="https://facebook.com/tanbaycu.404s" target="_blank" rel="noopener noreferrer"
+                <a href="https://facebook.com/tanbaycu.kaiser" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-primary transition duration-300">
                     <i data-lucide="facebook" class="w-6 h-6"></i>
                     <span class="sr-only">Facebook</span>
                 </a>
             </div>
             <div class="mt-4 text-center text-sm">
-                &copy; 2024 FunFacts Hub | Tanbaycu
+                &copy; 2024 FunFacts Hub | <span class="highlight-text">tanbaycu</span>
             </div>
         </div>
     </footer>
 
     <div id="loading-overlay"
         class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
-        <div class="custom-loader"></div>
+        <!-- Nội dung mới từ Uiverse.io -->
+        <div class="custom-loader">
+            <svg class="circle-outer" viewBox="0 0 86 86">
+                <circle class="back" cx="43" cy="43" r="40"></circle>
+                <circle class="front" cx="43" cy="43" r="40"></circle>
+                <circle class="new" cx="43" cy="43" r="40"></circle>
+            </svg>
+            <svg class="circle-middle" viewBox="0 0 60 60">
+                <circle class="back" cx="30" cy="30" r="27"></circle>
+                <circle class="front" cx="30" cy="30" r="27"></circle>
+            </svg>
+            <svg class="circle-inner" viewBox="0 0 34 34">
+                <circle class="back" cx="17" cy="17" r="14"></circle>
+                <circle class="front" cx="17" cy="17" r="14"></circle>
+            </svg>
+            <div class="text" data-text="Searching"></div>
+        </div>
     </div>
 
     <script>

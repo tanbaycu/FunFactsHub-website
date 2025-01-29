@@ -511,6 +511,54 @@
                     </button>
                 </div>
             </section>
+            <section id="programming-quote"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="quote" class="w-6 h-6 mr-2 text-primary"></i>Programming
+                        Quote
+                    </h2>
+                    <div class="space-y-4">
+                        <p id="programming-quote-content" class="fact-content text-gray-600 dark:text-gray-300">
+                            Loading...</p>
+                        <p id="programming-quote-author" class="text-sm text-gray-500 dark:text-gray-400 italic"></p>
+                        <div id="programming-quote-translation"
+                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
+                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Vietnamese
+                                translation:</h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-programming-quote"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>New Quote
+                    </button>
+                </div>
+            </section>
+
+            <section id="github-trending"
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                        <i data-lucide="github" class="w-6 h-6 mr-2 text-primary"></i>GitHub
+                        Trending
+                    </h2>
+                    <div id="github-trending-content" class="space-y-4">
+                        <h3 id="repo-name" class="text-lg font-semibold text-gray-700 dark:text-gray-300">Loading...
+                        </h3>
+                        <p id="repo-description" class="text-gray-600 dark:text-gray-400"></p>
+                        <p id="repo-stats" class="text-sm font-medium text-gray-500 dark:text-gray-500"></p>
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                    <button id="refresh-github-trending"
+                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Refresh Trending
+                    </button>
+                </div>
+            </section>
 
             <section id="dog-image"
                 class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
@@ -530,6 +578,7 @@
                     </button>
                 </div>
             </section>
+
         </div>
     </main>
 
@@ -826,6 +875,63 @@
                     toggleMenu();
                 }
             });
+        });
+        // Programming Quote
+        const programmingQuoteContent = document.getElementById('programming-quote-content');
+        const programmingQuoteAuthor = document.getElementById('programming-quote-author');
+        const programmingQuoteTranslation = document.getElementById('programming-quote-translation');
+        const refreshProgrammingQuote = document.getElementById('refresh-programming-quote');
+
+        const fetchProgrammingQuote = async () => {
+            showLoading();
+            try {
+                const response = await fetch('/programming-quote');
+                const data = await response.json();
+                programmingQuoteContent.textContent = `"${data.quote}"`;
+                programmingQuoteAuthor.textContent = `- ${data.author}`;
+                translateToVietnamese(data.quote, programmingQuoteTranslation);
+            } catch (error) {
+                console.error('Error fetching programming quote:', error);
+                programmingQuoteContent.textContent = 'Unable to load quote. Please try again later.';
+                programmingQuoteAuthor.textContent = '';
+            }
+            hideLoading();
+        };
+
+        refreshProgrammingQuote.addEventListener('click', fetchProgrammingQuote);
+
+        // GitHub Trending
+        const repoName = document.getElementById('repo-name');
+        const repoDescription = document.getElementById('repo-description');
+        const repoStats = document.getElementById('repo-stats');
+        const refreshGitHubTrending = document.getElementById('refresh-github-trending');
+
+        const fetchGitHubTrending = async () => {
+            showLoading();
+            try {
+                const response = await fetch('/github-trending');
+                const data = await response.json();
+                repoName.innerHTML = `<a href="${data.url}" target="_blank" rel="noopener noreferrer" class="hover:underline">${data.name}</a>`;
+                repoDescription.textContent = data.description || 'No description available.';
+                repoStats.textContent = `${data.stars} stars | ${data.language || 'Unknown language'}`;
+            } catch (error) {
+                console.error('Error fetching GitHub trending:', error);
+                repoName.textContent = 'Error';
+                repoDescription.textContent = 'Unable to load trending repository. Please try again later.';
+                repoStats.textContent = '';
+            }
+            hideLoading();
+        };
+
+        refreshGitHubTrending.addEventListener('click', fetchGitHubTrending);
+
+        // Add these new sections to the initial load
+        fetchProgrammingQuote();
+        fetchGitHubTrending();
+
+        // Add the new sections to the Intersection Observer
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
 
         // Intersection Observer for lazy loading

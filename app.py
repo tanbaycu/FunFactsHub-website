@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from deep_translator import GoogleTranslator
 import requests
+import random
 
 app = Flask(__name__)
 
@@ -53,8 +54,49 @@ def dog_image():
     data = response.json()
     return jsonify({'image_url': data['message']})
 
+@app.route('/programming-quote')
+def programming_quote():
+    try:
+        response = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
+        data = response.json()
+        return jsonify({
+            'quote': data['quote'],
+            'author': data['author']
+        })
+    except Exception as e:
+        print(f"Error fetching programming quote: {e}")
+        return jsonify({
+            'quote': "The best error message is the one that never shows up.",
+            'author': "Thomas Fuchs"
+        })
+
+@app.route('/github-trending')
+def github_trending():
+    try:
+        response = requests.get('https://api.github.com/search/repositories?q=created:>2023-01-01&sort=stars&order=desc')
+        data = response.json()
+        if data['items']:
+            repo = data['items'][0]  # Get the top trending repository
+            return jsonify({
+                'name': repo['name'],
+                'description': repo['description'],
+                'url': repo['html_url'],
+                'stars': repo['stargazers_count'],
+                'language': repo['language']
+            })
+        else:
+            raise Exception("No trending repositories found")
+    except Exception as e:
+        print(f"Error fetching GitHub trending: {e}")
+        return jsonify({
+            'name': "Error fetching data",
+            'description': "Unable to load trending repository. Please try again later.",
+            'url': "#",
+            'stars': "N/A",
+            'language': "N/A"
+        })
+
 if __name__ == '__main__':
     app.run(debug=True)
-
 
 app = app.wsgi_app
