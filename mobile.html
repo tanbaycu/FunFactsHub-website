@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FunFacts Hub - Mobile</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị trên mobile với giao diện tối ưu.">
+    <meta name="keywords" content="fun facts, mobile, useless facts, number facts, cat facts, jokes, dog images">
+    <meta name="author" content="Tanbaycu">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FunFacts Hub - Mobile Experience">
+    <meta property="og:description" content="Khám phá những sự thật thú vị trên mobile với giao diện tối ưu.">
+    <meta property="og:image" content="https://i.postimg.cc/MHyrgFCR/Thi-t-k-ch-a-c-t-n-15.png">
+    <meta property="og:url" content="https://funfactshub.vercel.app/mobile">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #f8f9fa;
+            --border: #e9ecef;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary);
+            color: var(--primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Mobile Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            z-index: 100;
+            /* Safe area for notched phones */
+            padding-top: max(16px, env(safe-area-inset-top));
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .desktop-link {
+            text-decoration: none;
+            color: var(--primary);
+            opacity: 0.6;
+            font-size: 12px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .desktop-link:hover {
+            opacity: 1;
+            background: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 20px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+
+        .hero-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(0, 0, 0, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            opacity: 0.7;
+            margin-bottom: 32px;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 0 20px 40px;
+            /* Space for bottom nav */
+            padding-bottom: 100px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        .card-header {
+            padding: 20px 20px 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+        }
+
+        .refresh-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .refresh-icon:active {
+            transform: rotate(-90deg);
+            opacity: 1;
+        }
+
+        .refresh-icon.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .fact-display {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .fact-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Input Group for Numbers */
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .input {
+            flex: 1;
+            border: 2px solid var(--border);
+            background: var(--accent);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .get-btn {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .get-btn:active {
+            transform: scale(0.95);
+        }
+
+        .random-btn {
+            background: var(--accent);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .random-btn:active {
+            transform: scale(0.95);
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        /* Translation */
+        .translation {
+            background: var(--accent);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            margin-top: 16px;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            font-size: 13px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .translation.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Dog Image */
+        .dog-card {
+            position: relative;
+        }
+
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .dog-image.loading {
+            opacity: 0.5;
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, var(--accent) 25%, rgba(248, 249, 250, 0.5) 50%, var(--accent) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 8px;
+        }
+
+        .skeleton-line {
+            height: 16px;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-line:last-child {
+            width: 70%;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .card-loading .fact-text {
+            display: none;
+        }
+
+        .card-loading .skeleton-container {
+            display: block;
+        }
+
+        .skeleton-container {
+            display: none;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+            /* Safe area for home indicator */
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 12px;
+        }
+
+        .nav-item:active {
+            background: var(--accent);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+            opacity: 0.6;
+        }
+
+        .nav-text {
+            font-size: 10px;
+            opacity: 0.6;
+            font-weight: 500;
+        }
+
+        .nav-item.active .nav-icon,
+        .nav-item.active .nav-text {
+            opacity: 1;
+        }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .loading-indicator.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loading-indicator">
+        Loading...
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">FACTS</div>
+            <a href="/desktop" class="desktop-link">💻 Desktop</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="hero-title">DISCOVER<br>FACTS</h1>
+        <p class="hero-subtitle">Curated for mobile experience</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="cards-container">
+            
+            <!-- Useless Facts -->
+            <div class="card fade-in" id="useless-card">
+                <div class="card-header">
+                    <div class="card-title">Useless Facts</div>
+                    <svg class="refresh-icon" onclick="fetchUselessFact()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <div class="fact-display">
+                        <div class="fact-text" id="useless-fact">Loading...</div>
+                        <div class="skeleton-container">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                        </div>
+                    </div>
+                    <div class="translation" id="useless-translation"></div>
+                </div>
+            </div>
+
+            <!-- Number Facts -->
+            <div class="card fade-in" id="number-card">
+                <div class="card-header">
+                    <div class="card-title">Number Facts</div>
+                    <svg class="refresh-icon" onclick="fetchRandomNumber()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <div class="input-group">
+                        <input type="number" class="input" id="number-input" placeholder="Enter number...">
+                        <button class="get-btn" onclick="fetchNumberFact()">Get</button>
+                    </div>
+                    <button class="random-btn" onclick="fetchRandomNumber()">🎲 Random Number</button>
+                    <div class="fact-display">
+                        <div class="fact-text" id="number-fact">Enter a number or try random</div>
+                        <div class="skeleton-container">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                        </div>
+                    </div>
+                    <div class="translation" id="number-translation"></div>
+                </div>
+            </div>
+
+            <!-- Cat Facts -->
+            <div class="card fade-in" id="cat-card">
+                <div class="card-header">
+                    <div class="card-title">Cat Facts</div>
+                    <svg class="refresh-icon" onclick="fetchCatFact()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <div class="fact-display">
+                        <div class="fact-text" id="cat-fact">Loading...</div>
+                        <div class="skeleton-container">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                        </div>
+                    </div>
+                    <div class="translation" id="cat-translation"></div>
+                </div>
+            </div>
+
+            <!-- Jokes -->
+            <div class="card fade-in" id="joke-card">
+                <div class="card-header">
+                    <div class="card-title">Daily Humor</div>
+                    <svg class="refresh-icon" onclick="fetchJoke()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <div class="fact-display">
+                        <div class="fact-text" id="joke-fact">Loading...</div>
+                        <div class="skeleton-container">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                        </div>
+                    </div>
+                    <div class="translation" id="joke-translation"></div>
+                </div>
+            </div>
+
+            <!-- GitHub Trending -->
+            <div class="card fade-in" id="github-card">
+                <div class="card-header">
+                    <div class="card-title">GitHub Trending</div>
+                    <svg class="refresh-icon" onclick="fetchGitHub()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <div class="fact-display">
+                        <div class="fact-text" id="github-content">Loading...</div>
+                        <div class="skeleton-container">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dog Images -->
+            <div class="card fade-in dog-card" id="dog-card">
+                <div class="card-header">
+                    <div class="card-title">Random Dogs</div>
+                    <svg class="refresh-icon" onclick="fetchDogImage()" viewBox="0 0 24 24">
+                        <path d="M1 4v6h6M23 20v-6h-6"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <img id="dog-image" class="dog-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f8f9fa'/%3E%3Ctext x='200' y='125' text-anchor='middle' dy='0.3em' font-family='Inter' font-size='14' fill='%23999'%3ELoading...%3C/text%3E%3C/svg%3E" alt="Random dog">
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="scrollToCard('useless-card')">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <path d="M12 17h.01"/>
+            </svg>
+            <span class="nav-text">Facts</span>
+        </div>
+        <div class="nav-item" onclick="scrollToCard('number-card')">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14,2 14,8 20,8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10,9 9,9 8,9"/>
+            </svg>
+            <span class="nav-text">Numbers</span>
+        </div>
+        <div class="nav-item" onclick="scrollToCard('cat-card')">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5z"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <span class="nav-text">Cats</span>
+        </div>
+        <div class="nav-item" onclick="scrollToCard('joke-card')">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <span class="nav-text">Jokes</span>
+        </div>
+        <div class="nav-item" onclick="scrollToCard('dog-card')">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/>
+                <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/>
+                <path d="M8 14v.5c0 .276.224.5.5.5s.5-.224.5-.5V14"/>
+                <path d="M15 14v.5c0 .276.224.5.5.5s.5-.224.5-.5V14"/>
+                <path d="M12 18.5L10.5 16.3a.5.5 0 0 1 .4-.8h2.2a.5.5 0 0 1 .4.8L12 18.5z"/>
+            </svg>
+            <span class="nav-text">Dogs</span>
+        </div>
+    </nav>
+
+    <script>
+        // Show loading indicator
+        function showLoading() {
+            document.getElementById('loading-indicator').classList.add('show');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading-indicator').classList.remove('show');
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Loading state management
+        function showCardLoading(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.classList.add('card-loading');
+            }
+        }
+
+        function hideCardLoading(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.classList.remove('card-loading');
+            }
+        }
+
+        function addSpinning(iconElement) {
+            if (iconElement) {
+                iconElement.classList.add('spinning');
+            }
+        }
+
+        function removeSpinning(iconElement) {
+            if (iconElement) {
+                iconElement.classList.remove('spinning');
+            }
+        }
+
+        // Translation function
+        async function translateText(text, translationId) {
+            try {
+                const response = await fetch('/translate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text })
+                });
+                const data = await response.json();
+                const translationEl = document.getElementById(translationId);
+                if (translationEl) {
+                    translationEl.textContent = data.translation;
+                    setTimeout(() => {
+                        translationEl.classList.add('show');
+                    }, 100);
+                }
+            } catch (error) {
+                console.error('Translation error:', error);
+            }
+        }
+
+        // Fetch functions
+        async function fetchUselessFact() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('useless-card');
+            
+            try {
+                const response = await fetch('/useless-fact');
+                const data = await response.json();
+                setTimeout(() => {
+                    const factEl = document.getElementById('useless-fact');
+                    if (factEl) {
+                        factEl.textContent = data.fact;
+                        hideCardLoading('useless-card');
+                        removeSpinning(icon);
+                        translateText(data.fact, 'useless-translation');
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const factEl = document.getElementById('useless-fact');
+                    if (factEl) {
+                        factEl.textContent = 'Failed to load fact';
+                        hideCardLoading('useless-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            }
+        }
+
+        async function fetchNumberFact() {
+            const numberInput = document.getElementById('number-input');
+            const number = numberInput ? numberInput.value || 'random' : 'random';
+            showCardLoading('number-card');
+            
+            try {
+                const response = await fetch(`/number-fact?number=${number}`);
+                const data = await response.json();
+                setTimeout(() => {
+                    const factEl = document.getElementById('number-fact');
+                    if (factEl) {
+                        factEl.textContent = data.fact;
+                        hideCardLoading('number-card');
+                        translateText(data.fact, 'number-translation');
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const factEl = document.getElementById('number-fact');
+                    if (factEl) {
+                        factEl.textContent = 'Failed to load fact';
+                        hideCardLoading('number-card');
+                    }
+                }, 600);
+            }
+        }
+
+        async function fetchRandomNumber() {
+            const icon = event.target;
+            const numberInput = document.getElementById('number-input');
+            addSpinning(icon);
+            if (numberInput) {
+                numberInput.value = '';
+            }
+            showCardLoading('number-card');
+            
+            try {
+                const response = await fetch('/number-fact?number=random');
+                const data = await response.json();
+                setTimeout(() => {
+                    const factEl = document.getElementById('number-fact');
+                    if (factEl) {
+                        factEl.textContent = data.fact;
+                        hideCardLoading('number-card');
+                        removeSpinning(icon);
+                        translateText(data.fact, 'number-translation');
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const factEl = document.getElementById('number-fact');
+                    if (factEl) {
+                        factEl.textContent = 'Failed to load fact';
+                        hideCardLoading('number-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            }
+        }
+
+        async function fetchCatFact() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('cat-card');
+            
+            try {
+                const response = await fetch('/cat-fact');
+                const data = await response.json();
+                setTimeout(() => {
+                    const factEl = document.getElementById('cat-fact');
+                    if (factEl) {
+                        factEl.textContent = data.fact;
+                        hideCardLoading('cat-card');
+                        removeSpinning(icon);
+                        translateText(data.fact, 'cat-translation');
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const factEl = document.getElementById('cat-fact');
+                    if (factEl) {
+                        factEl.textContent = 'Failed to load cat fact';
+                        hideCardLoading('cat-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            }
+        }
+
+        async function fetchJoke() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('joke-card');
+            
+            try {
+                const response = await fetch('/joke');
+                const data = await response.json();
+                setTimeout(() => {
+                    const factEl = document.getElementById('joke-fact');
+                    if (factEl) {
+                        factEl.textContent = data.joke;
+                        hideCardLoading('joke-card');
+                        removeSpinning(icon);
+                        translateText(data.joke, 'joke-translation');
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const factEl = document.getElementById('joke-fact');
+                    if (factEl) {
+                        factEl.textContent = 'Failed to load joke';
+                        hideCardLoading('joke-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            }
+        }
+
+        async function fetchDogImage() {
+            const icon = event.target;
+            const img = document.getElementById('dog-image');
+            addSpinning(icon);
+            if (img) {
+                img.classList.add('loading');
+            }
+            
+            try {
+                const response = await fetch('/dog-image');
+                const data = await response.json();
+                if (img) {
+                    img.onload = () => {
+                        img.classList.remove('loading');
+                        removeSpinning(icon);
+                    };
+                    img.src = data.image_url;
+                }
+            } catch (error) {
+                if (img) {
+                    img.classList.remove('loading');
+                }
+                removeSpinning(icon);
+                console.error('Failed to load dog image');
+            }
+        }
+
+        async function fetchGitHub() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('github-card');
+            
+            try {
+                const response = await fetch('/github-trending');
+                const data = await response.json();
+                setTimeout(() => {
+                    const contentEl = document.getElementById('github-content');
+                    if (contentEl) {
+                        contentEl.innerHTML = 
+                            `<strong>${data.name}</strong><br><span style="opacity: 0.7;">${data.description}</span><br><small style="opacity: 0.5;">${data.stars} stars • ${data.language}</small>`;
+                        hideCardLoading('github-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            } catch (error) {
+                setTimeout(() => {
+                    const contentEl = document.getElementById('github-content');
+                    if (contentEl) {
+                        contentEl.textContent = 'Failed to load trending repo';
+                        hideCardLoading('github-card');
+                        removeSpinning(icon);
+                    }
+                }, 600);
+            }
+        }
+
+        // Navigation
+        function scrollToCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Update active nav item
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                if (event && event.currentTarget) {
+                    event.currentTarget.classList.add('active');
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stagger the initial loads
+            setTimeout(() => fetchUselessFact(), 200);
+            setTimeout(() => fetchCatFact(), 400);
+            setTimeout(() => fetchJoke(), 600);
+            setTimeout(() => fetchDogImage(), 800);
+            setTimeout(() => fetchGitHub(), 1000);
+        });
+
+        // Enter key for number input
+        const numberInput = document.getElementById('number-input');
+        if (numberInput) {
+            numberInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    fetchNumberFact();
+                }
+            });
+        }
+
+        // Prevent zoom on input focus (iOS)
+        document.addEventListener('touchstart', function() {}, true);
+    </script>
+</body>
+</html>

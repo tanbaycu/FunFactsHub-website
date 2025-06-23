@@ -1,992 +1,1013 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FunFacts Hub - Khám phá điều thú vị mỗi ngày</title>
-    <meta name="description"
-        content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
-    <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="FunFacts Hub - Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày. Tìm hiểu về số học, mèo, chó và nhiều điều thú vị khác!">
+    <meta name="keywords" content="fun facts, useless facts, number facts, cat facts, jokes, dog images, trivia, interesting facts, daily facts">
     <meta name="author" content="Tanbaycu">
     <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta property="og:description"
-        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta property="og:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
     <meta property="og:image" content="https://i.postimg.cc/MHyrgFCR/Thi-t-k-ch-a-c-t-n-15.png">
     <meta property="og:url" content="https://funfactshub.vercel.app/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FunFacts Hub">
+    
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FunFacts Hub - Khám phá điều thú vị mỗi ngày">
-    <meta name="twitter:description"
-        content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
+    <meta name="twitter:description" content="Khám phá những sự thật thú vị, trích dẫn hài hước và hình ảnh độc đáo mỗi ngày tại FunFacts Hub.">
     <meta name="twitter:image" content="https://i.postimg.cc/tTbdGt2N/Thi-t-k-ch-a-c-t-n.png">
-    <link rel="canonical" href="https://your-funfacts-hub-url.com">
-    <link rel="alternate" hreflang="en" href="https://funfactshub.vercel.app//en/">
+    
+    <!-- Additional Meta Tags -->
+    <link rel="canonical" href="https://funfactshub.vercel.app/">
+    <link rel="alternate" hreflang="en" href="https://funfactshub.vercel.app/en/">
     <link rel="alternate" hreflang="vi" href="https://funfactshub.vercel.app/vi/">
     <link rel="icon" href="https://i.postimg.cc/MHyrgFCR/Thi-t-k-ch-a-c-t-n-15.png" type="image/png">
-    <meta name="theme-color" content="#6366f1">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#f43f5e',
-                    },
-                },
-            },
-        }
-    </script>
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #f5f5f5;
+            --border: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --radius: 24px;
+            --spacing: 32px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            background: var(--secondary);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
+        /* Mobile Detection and Redirect */
+        @media (max-width: 768px) {
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--secondary);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            body::after {
+                content: 'Redirecting to mobile version...';
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 10000;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 16px;
+            }
+        }
 
-        .custom-loader {
-            --background: #62abff;
-            --front-color: #4f29f0;
-            --back-color: #c3c8de;
-            --text-color: #414856;
-            width: 64px;
-            height: 64px;
+        /* Floating Header */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 32px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .header:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 400;
+            font-size: 14px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 32px;
+        }
+
+        .hero-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(64px, 12vw, 160px);
+            font-weight: 300;
+            letter-spacing: -4px;
+            line-height: 0.85;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(0, 0, 0, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 200;
+            opacity: 0.8;
+            margin-bottom: 48px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 20px 40px;
             border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Balanced Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .section {
+            position: relative;
+        }
+
+        /* Card Sizes - Balanced Layout */
+        .section:nth-child(1) { grid-column: 1 / 7; }
+        .section:nth-child(2) { grid-column: 7 / 13; }
+        .section:nth-child(3) { grid-column: 1 / 8; }
+        .section:nth-child(4) { grid-column: 8 / 13; }
+        .section:nth-child(5) { grid-column: 1 / 6; }
+        .section:nth-child(6) { grid-column: 1 / 13; margin-top: 40px; }
+
+        /* Card Styles */
+        .card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 4px 24px var(--shadow);
+            height: fit-content;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), rgba(0, 0, 0, 0.3));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 32px 32px 16px;
             position: relative;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .custom-loader svg {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .custom-loader svg circle {
-            position: absolute;
-            fill: none;
-            stroke-width: 6px;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transform: rotate(-100deg);
-            transform-origin: center;
-        }
-
-        .custom-loader svg circle.back {
-            stroke: var(--back-color);
-        }
-
-        .custom-loader svg circle.front {
-            stroke: var(--front-color);
-        }
-
-        .custom-loader svg.circle-outer {
-            height: 86px;
-            width: 86px;
-        }
-
-        .custom-loader svg.circle-outer circle {
-            stroke-dasharray: 62.75 188.25;
-        }
-
-        .custom-loader svg.circle-outer circle.back {
-            animation: circle-outer135 1.8s ease infinite 0.3s;
-        }
-
-        .custom-loader svg.circle-outer circle.front {
-            animation: circle-outer135 1.8s ease infinite 0.15s;
-        }
-
-        .custom-loader svg.circle-middle {
-            height: 60px;
-            width: 60px;
-        }
-
-        .custom-loader svg.circle-middle circle {
-            stroke-dasharray: 42.5 127.5;
-        }
-
-        .custom-loader svg.circle-middle circle.back {
-            animation: circle-middle6123 1.8s ease infinite 0.25s;
-        }
-
-        .custom-loader svg.circle-middle circle.front {
-            animation: circle-middle6123 1.8s ease infinite 0.1s;
-        }
-
-        .custom-loader svg.circle-inner {
-            height: 34px;
-            width: 34px;
-        }
-
-        .custom-loader svg.circle-inner circle {
-            stroke-dasharray: 22 66;
-        }
-
-        .custom-loader svg.circle-inner circle.back {
-            animation: circle-inner162 1.8s ease infinite 0.2s;
-        }
-
-        .custom-loader svg.circle-inner circle.front {
-            animation: circle-inner162 1.8s ease infinite 0.05s;
-        }
-
-        .custom-loader .text {
-            position: absolute;
-            bottom: -40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-transform: lowercase;
+        .card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
+
+        .refresh-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .refresh-icon:hover {
+            opacity: 1;
+            transform: rotate(-90deg);
+        }
+
+        .refresh-icon.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card-content {
+            padding: 0 32px 32px;
+        }
+
+        .fact-display {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .fact-text {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .fact-text.loading {
+            opacity: 0;
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, var(--accent) 25%, rgba(245, 245, 245, 0.5) 50%, var(--accent) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 8px;
+        }
+
+        .skeleton-line {
+            height: 20px;
+            margin-bottom: 12px;
+        }
+
+        .skeleton-line:last-child {
+            width: 70%;
+            margin-bottom: 0;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Translation Box */
+        .translation {
+            background: var(--accent);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
             font-size: 14px;
-            letter-spacing: 0.2px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            display: none;
         }
 
-        .custom-loader .text::before,
-        .custom-loader .text::after {
-            content: attr(data-text);
+        .translation.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .custom-loader .text::before {
-            color: var(--text-color);
+        /* Input Styles */
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            align-items: stretch;
         }
 
-        .custom-loader .text::after {
-            color: var(--front-color);
-            animation: text-animation76 3.6s ease infinite;
-            position: absolute;
-            left: 0;
+        .input {
+            flex: 1;
+            border: 2px solid var(--border);
+            background: var(--secondary);
+            padding: 14px 18px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
 
-        @keyframes circle-outer135 {
-            0% {
-                stroke-dashoffset: 25;
-            }
-
-            25% {
-                stroke-dashoffset: 0;
-            }
-
-            65% {
-                stroke-dashoffset: 301;
-            }
-
-            80% {
-                stroke-dashoffset: 276;
-            }
-
-            100% {
-                stroke-dashoffset: 276;
-            }
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes circle-middle6123 {
-            0% {
-                stroke-dashoffset: 17;
-            }
-
-            25% {
-                stroke-dashoffset: 0;
-            }
-
-            65% {
-                stroke-dashoffset: 204;
-            }
-
-            80% {
-                stroke-dashoffset: 187;
-            }
-
-            100% {
-                stroke-dashoffset: 187;
-            }
+        .get-btn {
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        @keyframes circle-inner162 {
-            0% {
-                stroke-dashoffset: 9;
-            }
-
-            25% {
-                stroke-dashoffset: 0;
-            }
-
-            65% {
-                stroke-dashoffset: 106;
-            }
-
-            80% {
-                stroke-dashoffset: 97;
-            }
-
-            100% {
-                stroke-dashoffset: 97;
-            }
+        .get-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes text-animation76 {
-            0% {
-                clip-path: inset(0 100% 0 0);
-            }
-
-            50% {
-                clip-path: inset(0);
-            }
-
-            100% {
-                clip-path: inset(0 0 0 100%);
-            }
+        .random-btn {
+            background: var(--accent);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
         }
 
-
-
-        .fact-content,
-        .fact-translation {
-            animation: fadeIn 0.5s ease-in-out;
+        .random-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
         }
 
-        @keyframes slideDown {
-            from {
-                max-height: 0;
-            }
-
-            to {
-                max-height: 300px;
-            }
+        /* Dog Image Card */
+        .card-wide .fact-display {
+            min-height: auto;
         }
 
-        @keyframes slideUp {
-            from {
-                max-height: 300px;
-            }
-
-            to {
-                max-height: 0;
-            }
+        .dog-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            filter: grayscale(20%);
         }
 
-        #menu {
-            transition: max-height 0.3s ease-out;
+        .dog-image:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
         }
 
-        @media (max-width: 1023px) {
-            #menu:not(.hidden) {
-                animation: slideDown 0.3s ease-out forwards;
-            }
-
-            #menu.hidden {
-                animation: slideUp 0.3s ease-out forwards;
-            }
+        .dog-image.loading {
+            opacity: 0.5;
         }
 
-        /* Hiệu ứng gradient text cho chữ "Tanbaycu" */
-        .highlight-text {
-            background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: gradient-text 3s linear infinite;
-            font-weight: bold;
-            font-size: 1.1em;
+        /* Loading States */
+        .card-loading .fact-text {
+            display: none;
         }
 
-        /* Hiệu ứng chữ tan biến (fade-in, fade-out) */
-        @keyframes fade-in-out {
-
-            0%,
-            100% {
-                opacity: 0.5;
-            }
-
-            50% {
-                opacity: 1;
-            }
+        .card-loading .skeleton-container {
+            display: block;
         }
 
-        .highlight-text {
-            animation: fade-in-out 2s ease-in-out infinite;
+        .skeleton-container {
+            display: none;
         }
 
-        /* Hoặc hiệu ứng gradient text animation */
-        @keyframes gradient-text {
-            0% {
-                background-position: 0% 50%;
-            }
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            padding: 60px 0;
+            text-align: center;
+            background: var(--accent);
+            border-top: 1px solid var(--border);
+        }
 
-            50% {
-                background-position: 100% 50%;
-            }
+        .footer-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.6;
+        }
 
-            100% {
-                background-position: 0% 50%;
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: repeat(8, 1fr);
             }
+            
+            .section:nth-child(1) { grid-column: 1 / 5; }
+            .section:nth-child(2) { grid-column: 5 / 9; }
+            .section:nth-child(3) { grid-column: 1 / 5; }
+            .section:nth-child(4) { grid-column: 5 / 9; }
+            .section:nth-child(5) { grid-column: 1 / 5; }
+            .section:nth-child(6) { grid-column: 1 / 9; }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--accent);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
+<body>
+    <!-- Mobile Redirect Script -->
+    <script>
+        if (window.innerWidth <= 768) {
+            window.location.href = '/mobile';
+        }
+    </script>
 
-<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
-    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <a href="#" class="text-2xl font-bold text-primary flex items-center">
-                    <i data-lucide="zap" class="w-8 h-8 mr-2"></i>
-                    FunFacts Hub
-                </a>
-                <div class="flex items-center space-x-4">
-                    <button id="dark-mode-toggle"
-                        class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">
-                        <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
-                        <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
-                    </button>
-                    <button id="menu-toggle"
-                        class="lg:hidden text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300"
-                        aria-label="Toggle menu">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- Floating Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">FACTS</div>
+            <nav class="nav">
+                <a href="#useless" class="nav-link">Useless</a>
+                <a href="#numbers" class="nav-link">Numbers</a>
+                <a href="#cats" class="nav-link">Cats</a>
+                <a href="#jokes" class="nav-link">Jokes</a>
+                <a href="#dogs" class="nav-link">Dogs</a>
+                <a href="/mobile" class="nav-link" style="opacity: 0.5; font-size: 12px;">📱 Mobile</a>
+            </nav>
         </div>
-        <nav id="menu"
-            class="hidden lg:block bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-all duration-300 overflow-hidden max-h-0 lg:max-h-none">
-            <div class="container mx-auto px-4">
-                <ul
-                    class="flex flex-col lg:flex-row lg:items-center lg:justify-end space-y-2 lg:space-y-0 lg:space-x-8 py-4 lg:py-0">
-                    <li><a href="#useless-fact"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Useless
-                            Fact</a></li>
-                    <li><a href="#number-fact"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Number
-                            Fact</a></li>
-                    <li><a href="#cat-fact"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Cat
-                            Fact</a></li>
-                    <li><a href="#joke"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Joke</a>
-                    </li>
-                    <li><a href="#dog-image"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Dog
-                            Image</a></li>
-                    <li><a href="#programming-quote"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Quote</a></li>
-                    <li><a href="#github-trending"
-                            class="block py-2 lg:py-4 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition duration-300">Github Trending
-                            </a></li>
-                </ul>
-            </div>
-        </nav>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Khám
-            phá điều thú vị mỗi ngày
-        </h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">DISCOVER<br>FACTS</h1>
+            <p class="hero-subtitle">Curated collection of fascinating facts, updated daily</p>
+            <button class="hero-cta" onclick="scrollToContent()">Explore Now</button>
+        </div>
+    </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <section id="useless-fact"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-primary"></i>Useless
-                        Fact
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="useless-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
-                            tải...
-                        </p>
-                        <div id="useless-fact-translation"
-                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
-                                dịch tiếng Việt:
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="content-grid">
+                
+                <!-- Useless Facts -->
+                <section class="section fade-in" id="useless">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Useless Facts</div>
+                            <svg class="refresh-icon" onclick="fetchUselessFact()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="fact-display">
+                                <div class="fact-text" id="useless-fact">Loading fascinating useless facts...</div>
+                                <div class="skeleton-container">
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                </div>
+                            </div>
+                            <div class="translation" id="useless-translation"></div>
                         </div>
                     </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-useless-fact"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
-                    </button>
-                </div>
-            </section>
+                </section>
 
-            <section id="number-fact"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="hash" class="w-6 h-6 mr-2 text-primary"></i>Number
-                        Fact
-                    </h2>
-                    <div class="space-y-4">
-                        <div class="flex space-x-2">
-                            <input type="number" id="number-input"
-                                class="flex-grow bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                                placeholder="Nhập số">
-                            <button id="get-number-fact"
-                                class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center">
-                                <i data-lucide="search" class="w-4 h-4 mr-2"></i>Lấy fact
-                            </button>
+                <!-- Number Facts -->
+                <section class="section fade-in" id="numbers">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Number Facts</div>
+                            <svg class="refresh-icon" onclick="fetchRandomNumber()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
                         </div>
-                        <div class="flex space-x-2">
-                            <button id="random-number"
-                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
-                                <i data-lucide="shuffle" class="w-4 h-4 mr-1"></i>Số ngẫu nhiên
-                            </button>
-                            <button id="today-date"
-                                class="flex-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300 text-sm flex items-center justify-center">
-                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>Ngày hôm nay
-                            </button>
-                        </div>
-                        <div id="number-fact-content" class="fact-content bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                            <p class="text-gray-600 dark:text-gray-300">Nhập
-                                một số để xem fact thú vị!</p>
-                        </div>
-                        <div id="number-fact-translation"
-                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
-                                dịch tiếng Việt:
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        <div class="card-content">
+                            <div class="input-group">
+                                <input type="number" class="input" id="number-input" placeholder="Enter number...">
+                                <button class="get-btn" onclick="fetchNumberFact()">Get</button>
+                            </div>
+                            <button class="random-btn" onclick="fetchRandomNumber()">🎲 Random Number</button>
+                            <div class="fact-display">
+                                <div class="fact-text" id="number-fact">Enter a number or try random</div>
+                                <div class="skeleton-container">
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                </div>
+                            </div>
+                            <div class="translation" id="number-translation"></div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="cat-fact"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="cat" class="w-6 h-6 mr-2 text-primary"></i>Cat Fact
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="cat-fact-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
-                            tải...</p>
-                        <div id="cat-fact-translation"
-                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
-                                dịch tiếng Việt:
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
+                <!-- Cat Facts -->
+                <section class="section fade-in" id="cats">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Cat Facts</div>
+                            <svg class="refresh-icon" onclick="fetchCatFact()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="fact-display">
+                                <div class="fact-text" id="cat-fact">Loading amazing cat facts...</div>
+                                <div class="skeleton-container">
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                </div>
+                            </div>
+                            <div class="translation" id="cat-translation"></div>
                         </div>
                     </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-cat-fact"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Fact mới
-                    </button>
-                </div>
-            </section>
+                </section>
 
-            <section id="joke"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="smile" class="w-6 h-6 mr-2 text-primary"></i>Joke of
-                        the Day
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="joke-content" class="fact-content text-gray-600 dark:text-gray-300">Đang
-                            tải...</p>
-                        <div id="joke-translation"
-                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Bản
-                                dịch tiếng Việt:
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
+                <!-- Jokes -->
+                <section class="section fade-in" id="jokes">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Daily Humor</div>
+                            <svg class="refresh-icon" onclick="fetchJoke()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="fact-display">
+                                <div class="fact-text" id="joke-fact">Loading daily dose of humor...</div>
+                                <div class="skeleton-container">
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                </div>
+                            </div>
+                            <div class="translation" id="joke-translation"></div>
                         </div>
                     </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-joke"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Joke mới
-                    </button>
-                </div>
-            </section>
-            <section id="programming-quote"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="quote" class="w-6 h-6 mr-2 text-primary"></i>Programming
-                        Quote
-                    </h2>
-                    <div class="space-y-4">
-                        <p id="programming-quote-content" class="fact-content text-gray-600 dark:text-gray-300">
-                            Loading...</p>
-                        <p id="programming-quote-author" class="text-sm text-gray-500 dark:text-gray-400 italic"></p>
-                        <div id="programming-quote-translation"
-                            class="fact-translation bg-gray-100 dark:bg-gray-700 rounded-lg p-4 hidden">
-                            <h3 class="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Vietnamese
-                                translation:</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
+                </section>
+
+                <!-- GitHub Trending -->
+                <section class="section fade-in">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">GitHub Trending</div>
+                            <svg class="refresh-icon" onclick="fetchGitHub()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="fact-display">
+                                <div class="fact-text" id="github-content">Loading trending repositories...</div>
+                                <div class="skeleton-container">
+                                    <div class="skeleton skeleton-line"></div>
+                                    <div class="skeleton skeleton-line"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-programming-quote"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>New Quote
-                    </button>
-                </div>
-            </section>
+                </section>
 
-            <section id="github-trending"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="github" class="w-6 h-6 mr-2 text-primary"></i>GitHub
-                        Trending
-                    </h2>
-                    <div id="github-trending-content" class="space-y-4">
-                        <h3 id="repo-name" class="text-lg font-semibold text-gray-700 dark:text-gray-300">Loading...
-                        </h3>
-                        <p id="repo-description" class="text-gray-600 dark:text-gray-400"></p>
-                        <p id="repo-stats" class="text-sm font-medium text-gray-500 dark:text-gray-500"></p>
+                <!-- Dog Images -->
+                <section class="section fade-in card-wide" id="dogs">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Random Dogs</div>
+                            <svg class="refresh-icon" onclick="fetchDogImage()" viewBox="0 0 24 24">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="fact-display">
+                                <img id="dog-image" class="dog-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f5f5f5'/%3E%3Ctext x='400' y='200' text-anchor='middle' dy='0.3em' font-family='Inter' font-size='16' fill='%23999'%3ELoading dog image...%3C/text%3E%3C/svg%3E" alt="Random dog">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-github-trending"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Refresh Trending
-                    </button>
-                </div>
-            </section>
+                </section>
 
-            <section id="dog-image"
-                class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl md:col-span-2 lg:col-span-3">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i data-lucide="image" class="w-6 h-6 mr-2 text-primary"></i>Random Dog
-                        Image
-                    </h2>
-                    <div class="flex justify-center mb-4">
-                        <img id="dog-image-content" src alt="Random dog" class="max-w-full h-auto rounded-lg shadow-md">
-                    </div>
-                </div>
-                <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700">
-                    <button id="refresh-dog-image"
-                        class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 flex items-center justify-center">
-                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Ảnh mới
-                    </button>
-                </div>
-            </section>
-
+            </div>
         </div>
     </main>
 
-    <footer
-        class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-8 mt-12 transition-colors duration-300">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0 text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-primary flex items-center justify-center md:justify-start">
-                        <i data-lucide="zap" class="w-6 h-6 mr-2"></i>FunFacts Hub
-                    </h3>
-                    <p>Khám phá điều thú vị mỗi ngày</p>
-                </div>
-                <div class="flex flex-wrap justify-center md:justify-end space-x-4">
-                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                        <i data-lucide="info" class="w-4 h-4 mr-1"></i>Về
-                        chúng tôi
-                    </a>
-                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                        <i data-lucide="shield" class="w-4 h-4 mr-1"></i>Chính sách bảo mật
-                    </a>
-                    <a href="#" class="hover:text-primary transition duration-300 flex items-center">
-                        <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Liên
-                        hệ
-                    </a>
-                </div>
-            </div>
-            <div class="mt-8 flex justify-center space-x-4">
-                <a href="https://github.com/tanbaycu" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-primary transition duration-300">
-                    <i data-lucide="github" class="w-6 h-6"></i>
-                    <span class="sr-only">GitHub</span>
-                </a>
-                <a href="https://facebook.com/tanbaycu.kaiser" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-primary transition duration-300">
-                    <i data-lucide="facebook" class="w-6 h-6"></i>
-                    <span class="sr-only">Facebook</span>
-                </a>
-            </div>
-            <div class="mt-4 text-center text-sm">
-                &copy; 2024 FunFacts Hub | <span class="highlight-text">tanbaycu</span>
-            </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            Crafted with precision — 2024
         </div>
     </footer>
 
-    <div id="loading-overlay"
-        class="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-75 hidden items-center justify-center z-50">
-        <!-- Nội dung mới từ Uiverse.io -->
-        <div class="custom-loader">
-            <svg class="circle-outer" viewBox="0 0 86 86">
-                <circle class="back" cx="43" cy="43" r="40"></circle>
-                <circle class="front" cx="43" cy="43" r="40"></circle>
-                <circle class="new" cx="43" cy="43" r="40"></circle>
-            </svg>
-            <svg class="circle-middle" viewBox="0 0 60 60">
-                <circle class="back" cx="30" cy="30" r="27"></circle>
-                <circle class="front" cx="30" cy="30" r="27"></circle>
-            </svg>
-            <svg class="circle-inner" viewBox="0 0 34 34">
-                <circle class="back" cx="17" cy="17" r="14"></circle>
-                <circle class="front" cx="17" cy="17" r="14"></circle>
-            </svg>
-            <div class="text" data-text="Searching"></div>
-        </div>
-    </div>
-
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        const menuToggle = document.getElementById('menu-toggle');
-        const menu = document.getElementById('menu');
-        const loadingOverlay = document.getElementById('loading-overlay');
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-
-        const toggleMenu = () => {
-            menu.classList.toggle('hidden');
-            if (!menu.classList.contains('hidden')) {
-                menu.style.maxHeight = menu.scrollHeight + "px";
-            } else {
-                menu.style.maxHeight = "0px";
-            }
-        };
-
-        menuToggle.addEventListener('click', toggleMenu);
-
-        darkModeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
-        });
-
-        // Check for user's preference
-        if (localStorage.getItem('darkMode') === 'true' ||
-            (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+        // Smooth scroll to content
+        function scrollToContent() {
+            document.querySelector('.main').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
         }
 
-        const showLoading = () => {
-            loadingOverlay.classList.remove('hidden');
-            loadingOverlay.classList.add('flex');
-        };
-
-        const hideLoading = () => {
-            loadingOverlay.classList.add('hidden');
-            loadingOverlay.classList.remove('flex');
-        };
-
-        // Function to translate text
-        const translateToVietnamese = async (text, translationElement) => {
-            showLoading();
-            try {
-                const response = await fetch('/translate', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ text: text })
-                });
-                const data = await response.json();
-                const translation = data.translation;
-                translationElement.querySelector('p').textContent = translation;
-                translationElement.classList.remove('hidden');
-                translationElement.style.opacity = 0;
-                setTimeout(() => {
-                    translationElement.style.opacity = 1;
-                }, 50);
-            } catch (error) {
-                console.error('Error translating:', error);
-                translationElement.querySelector('p').textContent = 'Không thể dịch. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        // Useless Fact
-        const uselessFactContent = document.getElementById('useless-fact-content');
-        const uselessFactTranslation = document.getElementById('useless-fact-translation');
-        const refreshUselessFact = document.getElementById('refresh-useless-fact');
-
-        const fetchUselessFact = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/useless-fact');
-                const data = await response.json();
-                uselessFactContent.textContent = data.fact;
-                translateToVietnamese(data.fact, uselessFactTranslation);
-            } catch (error) {
-                console.error('Error fetching useless fact:', error);
-                uselessFactContent.textContent = 'Không thể tải fact. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshUselessFact.addEventListener('click', fetchUselessFact);
-
-        // Number Fact
-        const numberInput = document.getElementById('number-input');
-        const getNumberFact = document.getElementById('get-number-fact');
-        const numberFactContent = document.getElementById('number-fact-content');
-        const numberFactTranslation = document.getElementById('number-fact-translation');
-        const randomNumberBtn = document.getElementById('random-number');
-        const todayDateBtn = document.getElementById('today-date');
-
-        const fetchNumberFact = async () => {
-            const number = numberInput.value || 'random';
-            showLoading();
-            try {
-                const response = await fetch(`/number-fact?number=${number}`);
-                const data = await response.json();
-                numberFactContent.innerHTML = `<p class="text-gray-600 dark:text-gray-300">${data.fact}</p>`;
-                translateToVietnamese(data.fact, numberFactTranslation);
-            } catch (error) {
-                console.error('Error fetching number fact:', error);
-                numberFactContent.innerHTML = '<p class="text-gray-600 dark:text-gray-300">Không thể tải fact. Vui lòng thử lại sau.</p>';
-            }
-            hideLoading();
-        };
-
-        getNumberFact.addEventListener('click', fetchNumberFact);
-
-        randomNumberBtn.addEventListener('click', () => {
-            numberInput.value = Math.floor(Math.random() * 1000) + 1;
-            fetchNumberFact();
-        });
-
-        todayDateBtn.addEventListener('click', () => {
-            const today = new Date();
-            const month = today.getMonth() + 1;
-            const day = today.getDate();
-            numberInput.value = `${month}/${day}`;
-            fetchNumberFact();
-        });
-
-        numberInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                fetchNumberFact();
-            }
-        });
-
-        // Cat Fact
-        const catFactContent = document.getElementById('cat-fact-content');
-        const catFactTranslation = document.getElementById('cat-fact-translation');
-        const refreshCatFact = document.getElementById('refresh-cat-fact');
-
-        const fetchCatFact = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/cat-fact');
-                const data = await response.json();
-                catFactContent.textContent = data.fact;
-                translateToVietnamese(data.fact, catFactTranslation);
-            } catch (error) {
-                console.error('Error fetching cat fact:', error);
-                catFactContent.textContent = 'Không thể tải fact. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshCatFact.addEventListener('click', fetchCatFact);
-
-        // Joke
-        const jokeContent = document.getElementById('joke-content');
-        const jokeTranslation = document.getElementById('joke-translation');
-        const refreshJoke = document.getElementById('refresh-joke');
-
-        const fetchJoke = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/joke');
-                const data = await response.json();
-                jokeContent.textContent = data.joke;
-                translateToVietnamese(data.joke, jokeTranslation);
-            } catch (error) {
-                console.error('Error fetching joke:', error);
-                jokeContent.textContent = 'Không thể tải joke. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshJoke.addEventListener('click', fetchJoke);
-
-        // Dog Image
-        const dogImageContent = document.getElementById('dog-image-content');
-        const refreshDogImage = document.getElementById('refresh-dog-image');
-
-        const fetchDogImage = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/dog-image');
-                const data = await response.json();
-                dogImageContent.src = data.image_url;
-                dogImageContent.alt = 'Random dog image';
-            } catch (error) {
-                console.error('Error fetching dog image:', error);
-                dogImageContent.alt = 'Không thể tải ảnh. Vui lòng thử lại sau.';
-            }
-            hideLoading();
-        };
-
-        refreshDogImage.addEventListener('click', fetchDogImage);
-
-        // Initial load
-        fetchUselessFact();
-        fetchNumberFact();
-        fetchCatFact();
-        fetchJoke();
-        fetchDogImage();
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target) && !menu.classList.contains('hidden')) {
-                toggleMenu();
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024) { // lg breakpoint
-                menu.classList.remove('hidden');
-                menu.style.maxHeight = "none";
-            } else {
-                menu.classList.add('hidden');
-                menu.style.maxHeight = "0px";
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                if (window.innerWidth < 1024) {
-                    toggleMenu();
-                }
-            });
-        });
-        // Programming Quote
-        const programmingQuoteContent = document.getElementById('programming-quote-content');
-        const programmingQuoteAuthor = document.getElementById('programming-quote-author');
-        const programmingQuoteTranslation = document.getElementById('programming-quote-translation');
-        const refreshProgrammingQuote = document.getElementById('refresh-programming-quote');
-
-        const fetchProgrammingQuote = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/programming-quote');
-                const data = await response.json();
-                programmingQuoteContent.textContent = `"${data.quote}"`;
-                programmingQuoteAuthor.textContent = `- ${data.author}`;
-                translateToVietnamese(data.quote, programmingQuoteTranslation);
-            } catch (error) {
-                console.error('Error fetching programming quote:', error);
-                programmingQuoteContent.textContent = 'Unable to load quote. Please try again later.';
-                programmingQuoteAuthor.textContent = '';
-            }
-            hideLoading();
-        };
-
-        refreshProgrammingQuote.addEventListener('click', fetchProgrammingQuote);
-
-        // GitHub Trending
-        const repoName = document.getElementById('repo-name');
-        const repoDescription = document.getElementById('repo-description');
-        const repoStats = document.getElementById('repo-stats');
-        const refreshGitHubTrending = document.getElementById('refresh-github-trending');
-
-        const fetchGitHubTrending = async () => {
-            showLoading();
-            try {
-                const response = await fetch('/github-trending');
-                const data = await response.json();
-                repoName.innerHTML = `<a href="${data.url}" target="_blank" rel="noopener noreferrer" class="hover:underline">${data.name}</a>`;
-                repoDescription.textContent = data.description || 'No description available.';
-                repoStats.textContent = `${data.stars} stars | ${data.language || 'Unknown language'}`;
-            } catch (error) {
-                console.error('Error fetching GitHub trending:', error);
-                repoName.textContent = 'Error';
-                repoDescription.textContent = 'Unable to load trending repository. Please try again later.';
-                repoStats.textContent = '';
-            }
-            hideLoading();
-        };
-
-        refreshGitHubTrending.addEventListener('click', fetchGitHubTrending);
-
-        // Add these new sections to the initial load
-        fetchProgrammingQuote();
-        fetchGitHubTrending();
-
-        // Add the new sections to the Intersection Observer
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Intersection Observer for lazy loading
+        // Intersection Observer for animations
         const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const section = entry.target;
-                    const sectionId = section.id;
-                    switch (sectionId) {
-                        case 'useless-fact':
-                            if (!uselessFactContent.textContent || uselessFactContent.textContent === 'Đang tải...') {
-                                fetchUselessFact();
-                            }
-                            break;
-                        case 'number-fact':
-                            if (!numberFactContent.textContent || numberFactContent.textContent === 'Đang tải...') {
-                                fetchNumberFact();
-                            }
-                            break;
-                        case 'cat-fact':
-                            if (!catFactContent.textContent || catFactContent.textContent === 'Đang tải...') {
-                                fetchCatFact();
-                            }
-                            break;
-                        case 'joke':
-                            if (!jokeContent.textContent || jokeContent.textContent === 'Đang tải...') {
-                                fetchJoke();
-                            }
-                            break;
-                        case 'dog-image':
-                            if (!dogImageContent.src) {
-                                fetchDogImage();
-                            }
-                            break;
-                    }
-                    observer.unobserve(section);
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Loading state management
+        function showCardLoading(cardId) {
+            const card = document.querySelector(`#${cardId}`).closest('.card');
+            card.classList.add('card-loading');
+        }
+
+        function hideCardLoading(cardId) {
+            const card = document.querySelector(`#${cardId}`).closest('.card');
+            card.classList.remove('card-loading');
+        }
+
+        function addSpinning(iconElement) {
+            iconElement.classList.add('spinning');
+        }
+
+        function removeSpinning(iconElement) {
+            iconElement.classList.remove('spinning');
+        }
+
+        // Translation function
+        async function translateText(text, translationId) {
+            try {
+                const response = await fetch('/translate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text })
+                });
+                const data = await response.json();
+                const translationEl = document.getElementById(translationId);
+                translationEl.textContent = data.translation;
+                setTimeout(() => {
+                    translationEl.classList.add('show');
+                }, 100);
+            } catch (error) {
+                console.error('Translation error:', error);
+            }
+        }
+
+        // Fetch functions with loading states
+        async function fetchUselessFact() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('useless-fact');
+            try {
+                const response = await fetch('/useless-fact');
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('useless-fact').textContent = data.fact;
+                    hideCardLoading('useless-fact');
+                    removeSpinning(icon);
+                    translateText(data.fact, 'useless-translation');
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('useless-fact').textContent = 'Failed to load fact';
+                    hideCardLoading('useless-fact');
+                    removeSpinning(icon);
+                }, 800);
+            }
+        }
+
+        async function fetchNumberFact() {
+            const number = document.getElementById('number-input').value || 'random';
+            showCardLoading('number-fact');
+            try {
+                const response = await fetch(`/number-fact?number=${number}`);
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('number-fact').textContent = data.fact;
+                    hideCardLoading('number-fact');
+                    translateText(data.fact, 'number-translation');
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('number-fact').textContent = 'Failed to load fact';
+                    hideCardLoading('number-fact');
+                }, 800);
+            }
+        }
+
+        async function fetchRandomNumber() {
+            const icon = event.target;
+            addSpinning(icon);
+            document.getElementById('number-input').value = '';
+            showCardLoading('number-fact');
+            try {
+                const response = await fetch('/number-fact?number=random');
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('number-fact').textContent = data.fact;
+                    hideCardLoading('number-fact');
+                    removeSpinning(icon);
+                    translateText(data.fact, 'number-translation');
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('number-fact').textContent = 'Failed to load fact';
+                    hideCardLoading('number-fact');
+                    removeSpinning(icon);
+                }, 800);
+            }
+        }
+
+        async function fetchCatFact() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('cat-fact');
+            try {
+                const response = await fetch('/cat-fact');
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('cat-fact').textContent = data.fact;
+                    hideCardLoading('cat-fact');
+                    removeSpinning(icon);
+                    translateText(data.fact, 'cat-translation');
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('cat-fact').textContent = 'Failed to load cat fact';
+                    hideCardLoading('cat-fact');
+                    removeSpinning(icon);
+                }, 800);
+            }
+        }
+
+        async function fetchJoke() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('joke-fact');
+            try {
+                const response = await fetch('/joke');
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('joke-fact').textContent = data.joke;
+                    hideCardLoading('joke-fact');
+                    removeSpinning(icon);
+                    translateText(data.joke, 'joke-translation');
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('joke-fact').textContent = 'Failed to load joke';
+                    hideCardLoading('joke-fact');
+                    removeSpinning(icon);
+                }, 800);
+            }
+        }
+
+        async function fetchDogImage() {
+            const icon = event.target;
+            const img = document.getElementById('dog-image');
+            addSpinning(icon);
+            img.classList.add('loading');
+            try {
+                const response = await fetch('/dog-image');
+                const data = await response.json();
+                img.onload = () => {
+                    img.classList.remove('loading');
+                    removeSpinning(icon);
+                };
+                img.src = data.image_url;
+            } catch (error) {
+                img.classList.remove('loading');
+                removeSpinning(icon);
+                console.error('Failed to load dog image');
+            }
+        }
+
+        async function fetchGitHub() {
+            const icon = event.target;
+            addSpinning(icon);
+            showCardLoading('github-content');
+            try {
+                const response = await fetch('/github-trending');
+                const data = await response.json();
+                setTimeout(() => {
+                    document.getElementById('github-content').innerHTML = 
+                        `<strong>${data.name}</strong><br><span style="opacity: 0.7;">${data.description}</span><br><small style="opacity: 0.5;">${data.stars} stars • ${data.language}</small>`;
+                    hideCardLoading('github-content');
+                    removeSpinning(icon);
+                }, 800);
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('github-content').textContent = 'Failed to load trending repo';
+                    hideCardLoading('github-content');
+                    removeSpinning(icon);
+                }, 800);
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stagger the initial loads
+            setTimeout(() => fetchUselessFact(), 200);
+            setTimeout(() => fetchCatFact(), 400);
+            setTimeout(() => fetchJoke(), 600);
+            setTimeout(() => fetchDogImage(), 800);
+            setTimeout(() => fetchGitHub(), 1000);
+        });
+
+        // Enter key for number input
+        document.getElementById('number-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                fetchNumberFact();
+            }
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.style.transform = 'translateX(-50%) translateY(-100px)';
+            } else {
+                header.style.transform = 'translateX(-50%) translateY(0)';
+            }
+            lastScrollY = window.scrollY;
         });
     </script>
 </body>
-
 </html>
